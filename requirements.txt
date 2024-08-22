@@ -7,7 +7,7 @@ idna==3.7
 kiwisolver==1.4.5
 matplotlib==3.9.2
 mealpy==3.0.1
-numpy==2.1.0
+numpy==1.26.0
 opfunu==1.0.1
 packaging==24.1
 pandas==2.2.2

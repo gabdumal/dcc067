@@ -17,14 +17,20 @@ problem_dictionary = {
     "minmax": "min",
 }
 
-optimizer = GA.BaseGA(
-    epoch=100,
-    pop_size=50,
-    pc=0.85,
-    pm=0.1,
+optimizer = GA.EliteSingleGA(
+    epoch=10000,
+    pop_size=100,
+    pc=0.9,
+    pm=0.8,
+    selection="tournament",  # ["roulette", "tournament", "random"], default = "tournament"
+    crossover="arithmetic",  # ["one_point", "multi_points", "uniform", "arithmetic"], default = "uniform"
+    mutation="flip",  # mutation (str): Optional, can be ["flip", "swap", "scramble","inversion"]
+    elite_best=0.1,
+    elite_worst=0.3,
+    strategy=0,
 )
 
 optimizer.solve(problem_dictionary)
 
-print(optimizer.g_best.solution)
-print(optimizer.g_best.target.fitness)
+print(f"Best solution: {optimizer.g_best.solution}")
+print(f"Best fitness: {optimizer.g_best.target.fitness}")
