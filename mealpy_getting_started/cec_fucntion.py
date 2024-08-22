@@ -15,6 +15,7 @@ problem_dictionary = {
         ub=([100] * 30),
     ),
     "minmax": "min",
+    "ndim": 30,
 }
 
 optimizer = GA.BaseGA(

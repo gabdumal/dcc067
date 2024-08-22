@@ -1,5 +1,15 @@
 {
-  "cSpell.words": ["mealpy", "minmax", "Pylance", "venv"],
+  "cSpell.words": [
+    "mealpy",
+    "minmax",
+    "Pylance",
+    "Pylint",
+    "termcolor",
+    "venv"
+  ],
+
+  "pylint.args": ["--disable=C0116"],
+
   "[python]": {
     "editor.formatOnSave": true
   }

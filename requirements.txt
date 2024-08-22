@@ -7,7 +7,7 @@ idna==3.7
 kiwisolver==1.4.5
 matplotlib==3.9.2
 mealpy==3.0.1
-numpy==2.1.0
+numpy==1.26.0
 opfunu==1.0.1
 packaging==24.1
 pandas==2.2.2
@@ -19,5 +19,6 @@ requests==2.32.3
 scipy==1.14.1
 setuptools==73.0.1
 six==1.16.0
+termcolor==2.4.0
 tzdata==2024.1
 urllib3==2.2.2

@@ -7,8 +7,8 @@
 Caso utilize o editor Visual Studio Code, recomendamos a instalação das seguintes extensões:
 
 - Python
-- Pylance
 - Python Debugger
+- Pylance
 - Ruff
 
 ## Instalação
