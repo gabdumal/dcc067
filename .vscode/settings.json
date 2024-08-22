@@ -1,6 +1,6 @@
 {
-    "cSpell.words": [
-        "mealpy",
-        "venv"
-    ]
+  "cSpell.words": ["mealpy", "minmax", "Pylance", "venv"],
+  "[python]": {
+    "editor.formatOnSave": true
+  }
 }

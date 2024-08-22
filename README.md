@@ -2,6 +2,15 @@
 
 **Grupo 1:** Avaliar o uso de seleção por roleta e por torneio (variações de k); avaliar o uso do crossover de um ponto e aritmético
 
+## Ambiente de Desenvolvimento
+
+Caso utilize o editor Visual Studio Code, recomendamos a instalação das seguintes extensões:
+
+- Python
+- Pylance
+- Python Debugger
+- Ruff
+
 ## Instalação
 
 ### Criação de um Virtual Environment
