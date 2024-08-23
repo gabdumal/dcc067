@@ -1,7 +1,7 @@
 import random
 import sys
 
-from opfunu.cec_based.cec2014 import F12014
+from opfunu.cec_based.cec2014 import F12014, F52014
 from termcolor import colored
 
 from other.square_sum import SquareSum
@@ -28,34 +28,91 @@ def header():
     print()
 
 
-if len(sys.argv) < 3:
+if len(sys.argv) < 8:
     print(
         colored(
-            "Usage: python main.py <objective_function> <export_parameters> <seed>",
+            "Usage: python main.py <experiment_identifier> <objective_function> <crossover> <selection> <tournament_percentage> <export_parameters> <seed>",
             "red",
         )
     )
     exit(1)
 
-try:
-    seed = int(sys.argv[3])
-    if seed < 0:
-        print(colored("Seed must be a non-negative integer", "red"))
-        exit(1)
-except IndexError:
-    seed = random.randint(0, 2**32 - 1)
-except ValueError:
-    print(colored("Seed must be an integer", "red"))
-    exit(1)
+experiment_identifier = sys.argv[1]
 
-objective_function = sys.argv[1]
-export_parameters = sys.argv[2]
-
-header()
-
-if objective_function == "SquareSum":
-    search(SquareSum, "SquareSum", seed, export_parameters == "True")
-elif objective_function == "F12014":
-    search(F12014, "F12014", seed, export_parameters == "True")
+objective_function_arg = sys.argv[2]
+if objective_function_arg == "SquareSum":
+    objective_function = SquareSum
+elif objective_function_arg == "F12014":
+    objective_function = F12014
+elif objective_function_arg == "F52014":
+    objective_function = F52014
 else:
     print(colored("Objective function not found", "red"))
+    exit(1)
+
+crossover_arg = sys.argv[3]
+if crossover_arg == "one_point":
+    crossover = "one_point"
+elif crossover_arg == "arithmetic":
+    crossover = "arithmetic"
+else:
+    print(colored("Crossover method not found", "red"))
+    exit(1)
+
+selection_arg = sys.argv[4]
+if selection_arg == "roulette":
+    selection = "roulette"
+elif selection_arg == "tournament":
+    selection = "tournament"
+else:
+    print(colored("Selection method not found", "red"))
+    exit(1)
+
+if selection == "roulette":
+    tournament_percentage = 0.2
+else:
+    tournament_percentage_arg = sys.argv[5]
+    try:
+        tournament_percentage = float(tournament_percentage_arg)
+        if tournament_percentage <= 0 or tournament_percentage >= 1:
+            print(
+                colored(
+                    "Tournament percentage must be between 0 and 1 exclusive", "red"
+                )
+            )
+            exit(1)
+    except ValueError:
+        print(colored("Tournament percentage must be a float", "red"))
+        exit(1)
+
+export_parameters_arg = sys.argv[6]
+if export_parameters_arg == "True":
+    export_parameters = True
+elif export_parameters_arg == "False":
+    export_parameters = False
+else:
+    print(colored("Export parameters must be True or False", "red"))
+    exit(1)
+
+seed_arg = sys.argv[7]
+if seed_arg == "None":
+    seed = random.randint(0, 2**32 - 1)
+else:
+    try:
+        seed = int(seed_arg)
+    except ValueError:
+        print(colored("Seed must be an integer", "red"))
+        exit(1)
+
+
+header()
+search(
+    experiment_identifier,
+    objective_function,
+    objective_function_arg,
+    crossover,
+    selection,
+    tournament_percentage,
+    export_parameters,
+    seed,
+)

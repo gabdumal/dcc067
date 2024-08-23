@@ -7,6 +7,14 @@
       "request": "launch",
       "program": "${workspaceFolder}/src/main.py",
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Python: analyzer.py",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/util/analyzer.py",
+      "console": "integratedTerminal",
+      "args": ["experiment_20240823073204"]
     }
   ]
 }

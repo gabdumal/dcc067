@@ -30,17 +30,20 @@ class ObjectiveFunction(ABC):
 
 
 def search(
+    experiment_identifier: str,
     objective_function_class: ObjectiveFunction,
     objective_function_identifier: str,
+    crossover: str,
+    selection: str,
+    tournament_percentage: float,
+    export_parameters,
     seed: int,
-    export_parameters=False,
 ):
     print_header(objective_function_class.name)
 
-
     # Problem definition
     dimensions = constants.dimensions
-    target = "min"
+    target = constants.target
     objective_function = objective_function_class(dimensions)
 
     def objective_function_wrapper(solution):
@@ -51,14 +54,11 @@ def search(
 
     # Algorithm parameters
     population_size: int = constants.population_size
-    selection = "roulette"
-    crossover = "uniform"
-    mutation = "swap"
-    k_way = 0.2
-    crossover_rate: float = 0.95
-    mutation_rate: float = 0.8
-    elitism_best_rate: float = 0.1
-    elitism_worst_rate: float = 0.3
+    mutation = constants.mutation
+    crossover_rate: float = constants.crossover_rate
+    mutation_rate: float = constants.mutation_rate
+    elitism_best_rate: float = constants.elitism_best_rate
+    elitism_worst_rate: float = constants.elitism_worst_rate
 
     # Optimization parameters
     population_size: int = constants.population_size
@@ -86,7 +86,7 @@ def search(
         selection=selection,
         crossover=crossover,
         mutation=mutation,
-        k_way=k_way,
+        k_way=tournament_percentage,
         elite_best=elitism_best_rate,
         elite_worst=elitism_worst_rate,
         strategy=0,
@@ -112,7 +112,9 @@ def search(
     }
     algorithm_parameters = {
         "Selection": selection,
-        "K-way": k_way,
+        "Tournament percentage": selection == "tournament"
+        and tournament_percentage
+        or None,
         "Crossover": crossover,
         "Crossover rates": crossover_rate,
         "Mutation": mutation,
@@ -142,16 +144,18 @@ def search(
 
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     output_file_directory_path = os.path.join(
-        project_root, f"results/{objective_function_identifier}/EliteSingleGA"
+        project_root,
+        f".results/${experiment_identifier}/EliteSingleGA/{objective_function_identifier}/{crossover}/{selection}",
     )
+    if selection == "tournament":
+        output_file_directory_path += f"/{tournament_percentage}"
     output_file_path = os.path.join(
         output_file_directory_path,
-        f"{selection}-{crossover}-{mutation}-{dimensions}.txt",
+        f"{seed}.txt",
     )
 
     os.makedirs(output_file_directory_path, exist_ok=True)
-    mode = "a" if os.path.exists(output_file_path) else "w"
-    with open(output_file_path, mode) as output_file:
+    with open(output_file_path, "w+") as output_file:
         if export_parameters:
             print_parameters(objective_function_description, output_file.write, False)
             output_file.write("\n")
@@ -160,7 +164,6 @@ def search(
             print_parameters(algorithm_parameters, output_file.write, False)
             output_file.write("\n")
             print_parameters(optimization_parameters, output_file.write, False)
-            output_file.write("\n")
             output_file.write("\n")
         print_parameters(solution_output, output_file.write, fancy=False)
         output_file.write("\n")
