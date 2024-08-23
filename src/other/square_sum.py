@@ -4,14 +4,13 @@ from search import ObjectiveFunction
 
 
 class SquareSum(ObjectiveFunction):
-    def __init__(self, dimensions, lowerBound=-100, upperBound=100):
-        self.dimensions = dimensions
-        self.lowerBound = lowerBound
-        self.upperBound = upperBound
+    def __init__(self, dimensions):
+        super().__init__(dimensions)
+        self._lb = -100 * np.ones(dimensions)
+        self._ub = 100 * np.ones(dimensions)
+        self.x_global = np.zeros(dimensions)
 
-    @staticmethod
-    def get_name():
-        return "Soma dos quadrados"
+    name = "Square Sum"
 
     def evaluate(self, sol):
         return np.sum(sol**2)

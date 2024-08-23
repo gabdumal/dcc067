@@ -1,3 +1,4 @@
+from opfunu.cec_based.cec2014 import F12014
 from termcolor import colored
 
 from other.square_sum import SquareSum
@@ -27,4 +28,5 @@ def header():
 header()
 
 # Run
-search(SquareSum)
+# search(SquareSum)
+search(F12014)

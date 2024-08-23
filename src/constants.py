@@ -1,5 +1,6 @@
-epochs: int = 100
+dimensions: int = 10
 population_size: int = 50
+epochs: int = 100
 iterations: int = 10
 
 # CEC-2014 functions
