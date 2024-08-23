@@ -145,7 +145,7 @@ def search(
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     output_file_directory_path = os.path.join(
         project_root,
-        f".results/${experiment_identifier}/EliteSingleGA/{objective_function_identifier}/{crossover}/{selection}",
+        f".results/{experiment_identifier}/EliteSingleGA/{objective_function_identifier}/{crossover}/{selection}",
     )
     if selection == "tournament":
         output_file_directory_path += f"/{tournament_percentage}"
