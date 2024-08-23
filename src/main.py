@@ -1,6 +1,6 @@
 from termcolor import colored
-from square_sum.main import square_sum
 from convex.main import convex
+from other.square_sum import square_sum
 
 
 def header():
@@ -26,5 +26,5 @@ def header():
 header()
 
 # Run
-# square_sum()
-convex()
+square_sum()
+# convex()

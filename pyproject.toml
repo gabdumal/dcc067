@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dcc067_tortinhas_quixotescas"
+version = "0.0.1"
+authors = [
+    { name = "Gabriel Malosto", email = "professional@gabdumal.com" },
+    { name = "Lucas Paiva" },
+    { name = "Victor Duque" },
+]
+description = "Package to study application of genetic algorithms libraries"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+keywords = ["genetic algorithms", "optimization", "metaheuristics"]
