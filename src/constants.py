@@ -1,5 +1,5 @@
 epochs: int = 100
-population_size: int = 100
+population_size: int = 50
 iterations: int = 10
 
 # CEC-2014 functions

@@ -1,8 +1,9 @@
-from termcolor import colored
-from mealpy import FloatVar, GA, Problem
+from mealpy import GA, FloatVar, Problem
 from opfunu.cec_based.cec2014 import F12014
+from termcolor import colored
+
 import constants
-from util import print_parameter, print_constant_parameters
+from util.printing_helper import print_parameter
 
 
 def header():
@@ -11,7 +12,6 @@ def header():
 
 def convex():
     header()
-    print_constant_parameters()
 
     # Problem definition
     dimensions: int = 10

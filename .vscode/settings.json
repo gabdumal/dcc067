@@ -8,6 +8,17 @@
     "venv"
   ],
 
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/__pycache__": true,
+    "**/__init__.py": true,
+    "**/.pytest_cache": true,
+    "**/.mypy_cache": true,
+    "**/.ipynb_checkpoints": true,
+    "**/.venv": true
+  },
+
   "pylint.args": ["--disable=C0116"],
 
   "[python]": {
