@@ -1,0 +1,152 @@
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=arithmetic
+mutation=swap
+strategy=0
+dimensions=10
+Best solution: [ 13.67513656  34.2731032  -74.40378468  56.09195946 -17.19773514
+ -50.60654516 -45.24711534  25.6582319   68.1257474   53.54170007]
+Best fitness: 174282251.2075996
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=arithmetic
+mutation=swap
+strategy=0
+dimensions=10
+Best solution: [-78.52843961 -32.07205256 -41.01687324  13.77721622  13.42300192
+   0.34433553 -77.13139681  87.03442737  83.80038162 -55.71547631]
+Best fitness: 247859098.45946375
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=arithmetic
+mutation=swap
+strategy=0
+dimensions=10
+Best solution: [-53.51676884  32.47782479 -13.0930393   14.72948721  28.08943071
+ -89.22541302 -43.41794929  -3.19188311  74.30776467 -65.49742448]
+Best fitness: 532591547.21611446
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=arithmetic
+mutation=swap
+strategy=0
+dimensions=10
+Best solution: [  2.99922682  38.97041113 -60.338813    30.8722341   -9.76282874
+ -63.1718562  -41.3471508   -6.57894291  60.46364025  16.84854953]
+Best fitness: 72866127.5441132
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=arithmetic
+mutation=swap
+strategy=0
+dimensions=10
+Best solution: [-65.32921729 -63.87920756 -72.47710922  39.05919339  79.00646044
+ -32.84432961  41.55899619  17.29235709  49.21740713 -75.66811115]
+Best fitness: 272447150.64145344
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=arithmetic
+mutation=swap
+strategy=0
+dimensions=10
+Best solution: [-74.58440276 -96.92518862 -83.71362029   8.92959216 -61.38810276
+ -61.56728186  85.73632537  51.05317645  91.76800461 -71.07614353]
+Best fitness: 748393238.4991167
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=arithmetic
+mutation=swap
+strategy=0
+dimensions=10
+Best solution: [ 12.85870879  63.96386274 -75.92434126  44.91155383   8.28200014
+  -5.06781501  53.75524067  28.38447852  53.89458228  54.14593911]
+Best fitness: 111898484.86633536
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=arithmetic
+mutation=swap
+strategy=0
+dimensions=10
+Best solution: [-61.47819579  56.71802691 -28.76616363  64.89702586  65.15250095
+ -72.11699333  17.31092929  -6.69364472  68.3928184  -79.91625982]
+Best fitness: 305268320.25231695
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=arithmetic
+mutation=swap
+strategy=0
+dimensions=10
+Best solution: [ -5.07972253 -19.13392472 -30.70782468  43.02304079 -90.73384379
+ -53.04165377 -25.40746024  60.89292593  64.15049451  22.1964282 ]
+Best fitness: 368451833.2174611
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=arithmetic
+mutation=swap
+strategy=0
+dimensions=10
+Best solution: [ 33.78507935  14.49394473 -81.23378331 -73.17800954 -28.24199766
+ -94.4964455   31.88728949  56.78452547  75.22699065   3.88842244]
+Best fitness: 456828504.33902574
+---------------------------------------------------------------------------------
+Média de aptidão: 329088655.62430006
+Melhor aptidão: 72866127.5441132
