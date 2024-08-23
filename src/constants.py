@@ -1,3 +1,4 @@
+epochs: int = 100
 population_size: int = 100
 iterations: int = 10
 

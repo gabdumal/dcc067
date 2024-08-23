@@ -1,0 +1,135 @@
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=one_point
+mutation=inversion
+strategy=0
+dimensions=10
+Best solution: [-12.95298268  29.72472153 -22.88917821 -96.0294984    7.29111455
+ -46.24034039 -47.96537508  65.34996387  93.08359551  -4.40926876]
+Best fitness: 48613141.47209095
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=one_point
+mutation=inversion
+strategy=0
+dimensions=10
+Best solution: [ -6.55262649  43.52879527 -66.49471713  63.62874777  43.52879527
+ -54.46938694 -66.49471713  -6.55262649  63.62874777   3.63293719]
+Best fitness: 38751127.34805911
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=one_point
+mutation=inversion
+strategy=0
+dimensions=10
+Best solution: [ 18.30267493   3.01388801 -56.82101315  73.99421411 -84.71975793
+  -2.65642233 -60.81933751   3.01388801  73.99421411  70.6531108 ]
+Best fitness: 14550049.99473495
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=one_point
+mutation=inversion
+strategy=0
+dimensions=10
+Best solution: [ 56.05625755  11.16856078 -85.34919021  56.05625755 -70.25396463
+ -85.34919021 -85.34919021 -37.78842079  56.05625755  70.26305342]
+Best fitness: 10064729.3634886
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=one_point
+mutation=inversion
+strategy=0
+dimensions=10
+Best solution: [ 36.56246493  -9.0737686  -69.20860248  17.08203062  -9.0737686
+ -62.12194788  17.08203062  -9.0737686   63.52532014  50.76949986]
+Best fitness: 21795544.362124544
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=one_point
+mutation=inversion
+strategy=0
+dimensions=10
+Best solution: [-19.72684147 -36.10041889 -61.98467057  -9.24813078 -78.25439453
+ -23.22333447 -23.22333447   7.71120265  74.50197081  -2.57623915]
+Best fitness: 49710138.11718317
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=one_point
+mutation=inversion
+strategy=0
+dimensions=10
+Best solution: [-27.61264228 -27.61264228 -51.41387579 -64.24331057 -27.61264228
+ -17.92409195  64.98243374  16.46213991  78.5227642   -2.73049665]
+Best fitness: 39709100.61701387
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=one_point
+mutation=inversion
+strategy=0
+dimensions=10
+Best solution: [-14.93147109 -13.96294944 -42.43215468   4.61756614 -42.43215468
+ -50.21255092 -50.21255092   4.61756614  85.61214259  -7.75658304]
+Best fitness: 42092905.195465416
+---------------------------------------------------------------------------------
+Parameters:
+epoch=5000
+pop_size=50
+pc=0.9
+pm=0.005
+selection=roulette
+k_way=0.2
+crossover=one_point
+mutation=inversion
+strategy=0
+dimensions=10
+Best solution: [-20.78062482 -37.63114327 -60.88431014  83.99272065 -69.19914627
+ -43.01754961  54.45162214  -6.58954115  71.15029735  -8.03120798]
+Best fitness: 45468699.77737007
+---------------------------------------------------------------------------------

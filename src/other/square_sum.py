@@ -1,5 +1,6 @@
-from mealpy import FloatVar, GA
 import numpy as np
+from mealpy import GA, FloatVar
+
 import constants
 from util import print_parameter
 
@@ -29,9 +30,11 @@ def square_sum():
     print_parameter("Taxa de crossover", crossover_rate)
     mutation_rate: float = 0.025
     print_parameter("Taxa de mutação", mutation_rate)
+    population_size: int = constants.population_size
+    print_parameter("Tamanho da população", population_size)
 
     # Optimization parameters
-    epochs: int = 10000
+    epochs: int = constants.epochs
     print_parameter("Número de épocas", epochs)
 
     global_solution = np.zeros(dimensions)
@@ -51,7 +54,7 @@ def square_sum():
 
     optimizer = GA.BaseGA(
         epoch=epochs,
-        pop_size=constants.population_size,
+        pop_size=population_size,
         pc=crossover_rate,
         pm=mutation_rate,
     )
