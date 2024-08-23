@@ -1,3 +1,6 @@
+import random
+import sys
+
 from opfunu.cec_based.cec2014 import F12014
 from termcolor import colored
 
@@ -25,12 +28,34 @@ def header():
     print()
 
 
+if len(sys.argv) < 3:
+    print(
+        colored(
+            "Usage: python main.py <objective_function> <export_parameters> <seed>",
+            "red",
+        )
+    )
+    exit(1)
+
+try:
+    seed = int(sys.argv[3])
+    if seed < 0:
+        print(colored("Seed must be a non-negative integer", "red"))
+        exit(1)
+except IndexError:
+    seed = random.randint(0, 2**32 - 1)
+except ValueError:
+    print(colored("Seed must be an integer", "red"))
+    exit(1)
+
+objective_function = sys.argv[1]
+export_parameters = sys.argv[2]
+
 header()
 
-# Run
-# search(SquareSum, "SquareSum", export_parameters=True)
-# search(SquareSum, "SquareSum")
-# search(SquareSum, "SquareSum")
-search(F12014, "F12014", export_parameters=True)
-search(F12014, "F12014")
-search(F12014, "F12014")
+if objective_function == "SquareSum":
+    search(SquareSum, "SquareSum", seed, export_parameters == "True")
+elif objective_function == "F12014":
+    search(F12014, "F12014", seed, export_parameters == "True")
+else:
+    print(colored("Objective function not found", "red"))

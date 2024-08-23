@@ -32,9 +32,11 @@ class ObjectiveFunction(ABC):
 def search(
     objective_function_class: ObjectiveFunction,
     objective_function_identifier: str,
+    seed: int,
     export_parameters=False,
 ):
     print_header(objective_function_class.name)
+
 
     # Problem definition
     dimensions = constants.dimensions
@@ -91,7 +93,7 @@ def search(
     )
 
     print()
-    optimizer.solve(problem_modelling)
+    optimizer.solve(problem_modelling, seed=seed)
     print()
 
     algorithm_solution = optimizer.g_best.solution
@@ -123,7 +125,8 @@ def search(
         "Epochs": epochs,
     }
     solution_output = {
-        "Algorithm solution": algorithm_solution,
+        "Seed": int(seed),
+        "Algorithm solution": algorithm_solution.tolist(),
         "Algorithm fitness": algorithm_fitness,
     }
 
