@@ -28,5 +28,9 @@ def header():
 header()
 
 # Run
-# search(SquareSum)
-search(F12014)
+# search(SquareSum, "SquareSum", export_parameters=True)
+# search(SquareSum, "SquareSum")
+# search(SquareSum, "SquareSum")
+search(F12014, "F12014", export_parameters=True)
+search(F12014, "F12014")
+search(F12014, "F12014")

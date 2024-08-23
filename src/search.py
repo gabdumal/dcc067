@@ -1,3 +1,4 @@
+import os
 from abc import ABC, abstractmethod
 
 import numpy as np
@@ -28,7 +29,11 @@ class ObjectiveFunction(ABC):
         pass
 
 
-def search(objective_function_class: ObjectiveFunction):
+def search(
+    objective_function_class: ObjectiveFunction,
+    objective_function_identifier: str,
+    export_parameters=False,
+):
     print_header(objective_function_class.name)
 
     # Problem definition
@@ -92,35 +97,67 @@ def search(objective_function_class: ObjectiveFunction):
     algorithm_solution = optimizer.g_best.solution
     algorithm_fitness = objective_function.evaluate(algorithm_solution)
 
-    print_parameters(
-        {
-            "Objective function": objective_function_class.name,
-            "Dimensions": dimensions,
-            "Lower bounds": lower_bounds,
-            "Upper bounds": upper_bounds,
-            "Optimal solution": optimal_solution,
-            "Optimal fitness": optimal_fitness,
-        }
-    )
+    # Results
+    objective_function_description = {
+        "Objective function": objective_function_class.name
+    }
+    problem_parameters = {
+        "Dimensions": dimensions,
+        "Lower bounds": lower_bounds,
+        "Upper bounds": upper_bounds,
+        "Optimal solution": optimal_solution,
+        "Optimal fitness": optimal_fitness,
+    }
+    algorithm_parameters = {
+        "Selection": selection,
+        "K-way": k_way,
+        "Crossover": crossover,
+        "Crossover rates": crossover_rate,
+        "Mutation": mutation,
+        "Mutation rates": mutation_rate,
+        "Elitism best rate": elitism_best_rate,
+        "Elitism worst rate": elitism_worst_rate,
+    }
+    optimization_parameters = {
+        "Population size": population_size,
+        "Epochs": epochs,
+    }
+    solution_output = {
+        "Algorithm solution": algorithm_solution,
+        "Algorithm fitness": algorithm_fitness,
+    }
+
+    print_parameters(objective_function_description)
     print()
-    print_parameters(
-        {
-            "Selection": selection,
-            "K-way": k_way,
-            "Crossover": crossover,
-            "Crossover rates": crossover_rate,
-            "Mutation": mutation,
-            "Mutation rates": mutation_rate,
-            "Elitism best rate": elitism_best_rate,
-            "Elitism worst rate": elitism_worst_rate,
-        }
-    )
+    print_parameters(problem_parameters)
     print()
-    print_parameters(
-        {
-            "Population size": population_size,
-            "Epochs": epochs,
-            "Algorithm solution": algorithm_solution,
-            "Algorithm fitness": algorithm_fitness,
-        }
+    print_parameters(algorithm_parameters)
+    print()
+    print_parameters(optimization_parameters)
+    print()
+    print_parameters(solution_output)
+
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    output_file_directory_path = os.path.join(
+        project_root, f"results/{objective_function_identifier}/EliteSingleGA"
     )
+    output_file_path = os.path.join(
+        output_file_directory_path,
+        f"{selection}-{crossover}-{mutation}-{dimensions}.txt",
+    )
+
+    os.makedirs(output_file_directory_path, exist_ok=True)
+    mode = "a" if os.path.exists(output_file_path) else "w"
+    with open(output_file_path, mode) as output_file:
+        if export_parameters:
+            print_parameters(objective_function_description, output_file.write, False)
+            output_file.write("\n")
+            print_parameters(problem_parameters, output_file.write, False)
+            output_file.write("\n")
+            print_parameters(algorithm_parameters, output_file.write, False)
+            output_file.write("\n")
+            print_parameters(optimization_parameters, output_file.write, False)
+            output_file.write("\n")
+            output_file.write("\n")
+        print_parameters(solution_output, output_file.write, fancy=False)
+        output_file.write("\n")

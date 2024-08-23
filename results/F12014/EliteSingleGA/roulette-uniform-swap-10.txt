@@ -1,0 +1,30 @@
+Objective function: F1: Rotated High Conditioned Elliptic Function
+
+Dimensions: 10
+Lower bounds: [-100., -100., -100., -100., -100., -100., -100., -100., -100., -100.]
+Upper bounds: [100., 100., 100., 100., 100., 100., 100., 100., 100., 100.]
+Optimal solution: [ 50.35578982,  64.92670993, -59.68210939,  66.14013698,  21.1774794 , -64.3935352 , -35.44028498,   7.50104307,  73.20109367,  74.38216563]
+Optimal fitness: 100.0
+
+Selection: roulette
+K-way: 0.2
+Crossover: uniform
+Crossover rates: 0.95
+Mutation: swap
+Mutation rates: 0.8
+Elitism best rate: 0.1
+Elitism worst rate: 0.3
+
+Population size: 50
+Epochs: 100
+
+
+Algorithm solution: [ 12.34594721,  12.34594721, -94.93118291,  53.89068881,  53.89068881, -15.58217676,  12.34594721, -20.64474539,  53.85994575,  53.85994575]
+Algorithm fitness: 32174848.851125978
+
+Algorithm solution: [-20.25716823,  69.45901741, -53.46567905,  47.84448199,  80.81538788, -48.8500559 ,  90.08216634,   9.69202794,  74.91019481, -20.25716823]
+Algorithm fitness: 42113758.16474277
+
+Algorithm solution: [ 50.10611244,  29.73254416, -38.6537919 ,  27.01509488, -28.44993035, -62.44237123, -67.04068935,  27.02260045,  82.20087436,  72.4615114 ]
+Algorithm fitness: 12278403.636005834
+

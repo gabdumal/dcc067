@@ -1,4 +1,4 @@
-from mealpy import FloatVar, GA
+from mealpy import GA, FloatVar
 from opfunu.cec_based.cec2014 import F12014
 
 # para a escrita em arquivo foi concatenada a letra g simbolizando global
