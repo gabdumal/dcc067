@@ -31,6 +31,7 @@ class ObjectiveFunction(ABC):
 
 def search(
     experiment_identifier: str,
+    dimensions: int,
     objective_function_class: ObjectiveFunction,
     objective_function_identifier: str,
     crossover: str,
@@ -42,7 +43,6 @@ def search(
     print_header(objective_function_class.name)
 
     # Problem definition
-    dimensions = constants.dimensions
     target = constants.target
     objective_function = objective_function_class(dimensions)
 
@@ -145,7 +145,7 @@ def search(
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     output_file_directory_path = os.path.join(
         project_root,
-        f".results/{experiment_identifier}/EliteSingleGA/{objective_function_identifier}/{crossover}/{selection}",
+        f".results/{experiment_identifier}/EliteSingleGA/{dimensions}/{objective_function_identifier}/{crossover}/{selection}",
     )
     if selection == "tournament":
         output_file_directory_path += f"/{tournament_percentage}"

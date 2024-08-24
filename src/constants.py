@@ -1,4 +1,3 @@
-dimensions: int = 10
 target: str = "min"
 population_size: int = 50
 crossover_rate: float = 0.9
@@ -11,8 +10,9 @@ epochs: int = 10000
 # CEC-2014 functions
 
 ## Convex
-### F12014 - Rotated Bent Cigar
+### F12014 - Rotated High Conditioned Elliptic Function
 ### F22014 - Rotated Bent Cigar
 
 ## Non-convex
+### F42014 - Shifted and Rotated Rosenbrock’s Function
 ### F52014 - Shifted and Rotated Ackley's

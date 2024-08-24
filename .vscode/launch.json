@@ -9,12 +9,12 @@
       "console": "integratedTerminal"
     },
     {
-      "name": "Python: analyzer.py",
+      "name": "Python: compile_results.py",
       "type": "debugpy",
       "request": "launch",
-      "program": "${workspaceFolder}/src/util/analyzer.py",
+      "program": "${workspaceFolder}/src/util/compile_results.py",
       "console": "integratedTerminal",
-      "args": ["experiment_20240823073204"]
+      "args": ["experiment_20240823081110"]
     }
   ]
 }
