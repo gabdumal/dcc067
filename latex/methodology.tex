@@ -43,3 +43,67 @@ As duas funções objetivo escolhidas para a realização dos experimentos foram
     \label{fig:f5}
 \end{figure}
 
+\subsection{Configuração dos experimentos}
+
+\todo[author=Gabriel]{Introduzir}
+
+\subsubsection{Constantes}
+
+Dado o escopo do trabalho, foram estabelecidas algumas constantes utilizadas em todos os experimentos realizados, as quais estão listadas na \autoref{tab:constantes}.
+
+\begin{table}[htb]
+    \center%
+    \begin{tabular}{l l}
+        \bottomrule
+        \textbf{Constant}    & \textbf{Value} \\ \midrule
+        Target               & Min            \\ \midrule
+        Population size      & 50             \\ \midrule
+        Crossover rate       & 90\%           \\ \midrule
+        Mutation             & Flip           \\ \midrule
+        Mutation rate        & 5\%            \\ \midrule
+        Elitism rate (best)  & 10\%           \\ \midrule
+        Elitism rate (worst) & 30\%           \\ \midrule
+        Epochs               & 10000          \\ \toprule
+    \end{tabular}
+    \caption{Constantes utilizadas nos experimentos.}%
+    \label{tab:constantes}
+\end{table}
+
+Todas as funções tem objetivo de minimização.
+Cada gene dos indivíduos da população é representado por um número real entre -100 e 100.
+A população inicial é gerada de forma aleatória dentro deste intervalo.
+Seu tamanho se mantém fixo ao longo de todas as gerações, em 50 indivíduos.
+
+O operador de \gls{crossover} é aplicado com uma taxa de 90\%, de forma que o método escolhido é parte das variáveis analisadas.
+A mutação é aplicada com uma taxa de 5\%, e o método de mutação escolhido é o \texttt{flip}.
+
+O elitismo é aplicado em 10\% dos melhores indivíduos e em 30\% dos piores.
+A execução de cada iteração é realizada por 10000 gerações, ou épocas.
+
+\subsection{Variáveis}
+
+As variáveis analisadas nos experimentos se tratam dos operadores de seleção, que podem ser roleta ou torneio --- em que se varia a proporção da população selecionada para participar do torneio (10\%, 20\%, 30\%, 40\%, 50\%) ---, e do operador de \gls{crossover}, que pode ser de um ponto ou aritmético.
+
+A compilação das variáveis resulta em 12 combinações possíveis, que são listadas na \autoref{tab:variaveis}, além das execuções com 10 e 20 dimensões, o que totaliza 24 experimentos para cada função objetivo.
+
+\begin{table}[!ht]
+    \center%
+    \begin{tabular}{|l|l|l|}
+        \bottomrule
+        \multirow{2}{*}{Dimensions number} & \multicolumn{2}{l|}{10}                                 \\ \cline{2-3}
+                                           & \multicolumn{2}{l|}{20}                                 \\ \hline
+        \multirow{6}{*}{Selection}         & \multicolumn{2}{l|}{Roulette}                           \\ \cline{2-3}
+                                           & \multicolumn{1}{l|}{\multirow{5}{*}{Tournament}} & 10\% \\ \cline{3-3}
+                                           & \multicolumn{1}{l|}{}                            & 20\% \\ \cline{3-3}
+                                           & \multicolumn{1}{l|}{}                            & 30\% \\ \cline{3-3}
+                                           & \multicolumn{1}{l|}{}                            & 40\% \\ \cline{3-3}
+                                           & \multicolumn{1}{l|}{}                            & 50\% \\ \hline
+        \multirow{2}{*}{Crossover}         & \multicolumn{2}{l|}{One point}                          \\ \cline{2-3}
+                                           & \multicolumn{2}{l|}{Arithmetic}                         \\ \toprule
+    \end{tabular}
+    \caption{Variáveis analisadas nos experimentos.}%
+    \label{tab:variaveis}
+\end{table}
+
+Os experimentos foram realizados com 10 execuções para cada combinação de variáveis, a fim de garantir a robustez dos resultados obtidos.
+Dessa forma, totaliza 220 execuções para cada função objetivo.
