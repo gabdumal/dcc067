@@ -23,7 +23,6 @@
     "urlcolor",
     "xindy"
   ],
-
   "latex-workshop.bibtex-fields.sort.enabled": true,
   "latex-workshop.bibtex-format.sort.enabled": true,
   "latex-workshop.bibtex-format.sortby": ["author", "year-desc"],
@@ -37,17 +36,17 @@
   ],
   "latex-workshop.latex.tools": [
     {
+      "name": "latexmk",
+      "command": "latexmk",
       "args": [
         "-synctex=1",
         "-interaction=nonstopmode",
         "-file-line-error",
-        "-pdf",
         "-outdir=%OUTDIR%",
+        "-f",
+        "-pdf",
         "%DOC%"
-      ],
-      "command": "latexmk",
-      "env": {},
-      "name": "latexmk"
+      ]
     }
   ],
   "latex-workshop.linting.chktex.enabled": true,
