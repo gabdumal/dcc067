@@ -1,0 +1,164 @@
+\documentclass[
+    % -- opções da classe memoir --
+    article,			% indica que é um artigo acadêmico
+    11pt,				% tamanho da fonte
+    oneside,			% para impressão apenas no recto. Oposto a twoside
+    a4paper,			% tamanho do papel. 
+    % -- opções da classe abntex2 --
+    %chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+    %section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+    %subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+    %subsubsection=TITLE % títulos de subsubseções convertidos em letras maiúsculas
+    % -- opções do pacote babel --
+    english,			% idioma adicional para hifenização
+    brazil,				% o último idioma é o principal do documento
+    sumario=tradicional
+]{abntex2}
+
+% -----
+% Pacotes fundamentais 
+% -----
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Seleção de códigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificação do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Identa o primeiro parágrafo de cada seção.
+\usepackage{nomencl} 			% Lista de símbolos
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% Para melhorias de justificação
+\usepackage[xindy={language=portuguese},subentrycounter,seeautonumberlist,nonumberlist=true]{glossaries}
+\usepackage[brazilian,hyperpageref]{backref}	 % Páginas com as citações na bibliografia
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+% -----
+
+% -----
+% Configurações de pacotes
+% -----
+
+% --- Glossaries ---
+\input{glossaries.tex}
+
+% --- Backref ---
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase{} #1 %
+		Nenhuma citação no texto.%
+	\or{}
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi
+}
+
+% -----
+
+% -----
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% -----
+\titulo{DCC067 Computação Evolucionista: Trabalho Prático 1 --- Avaliação do uso de seleção por roleta e por torneio com variações de K, e avaliação do uso de crossover de um ponto e aritmético}
+\tituloestrangeiro{DCC067 Evolutionary Computing: Practical Work 1 --- Evaluation of the use of roulette and tournament selection with variations of K, and evaluation of the use of one-point and arithmetic crossover}
+
+\autor{%
+    Celso Gabriel Malosto \and Lucas Paiva Santos \and Victor Duque Pinto
+}
+
+\local{Juiz de Fora}
+\data{2024}
+% -----
+
+% -----
+% Configurações de aparência do PDF final
+% -----
+\definecolor{blue}{RGB}{41,5,195}
+% Informações do PDF
+\makeatletter
+\hypersetup{%
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={Modelo de artigo científico com abnTeX2},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{artigo científico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% -----
+
+% -----
+% Demais configurações
+% -----
+
+% Compila o índice
+\makeindex
+
+% Altera as margens padrões
+\setlrmarginsandblock{3cm}{3cm}{*}
+\setulmarginsandblock{3cm}{3cm}{*}
+\checkandfixthelayout{}
+
+% Espaçamentos entre linhas e parágrafos
+\setlength{\parindent}{1.3cm} % Tamanho do parágrafo
+\setlength{\parskip}{0.2cm}  % Controle do espaçamento entre um parágrafo e outro
+\SingleSpacing{} % Espaçamento simples
+
+% -----
+
+\begin{document}
+
+% -----
+% Configurações do documento
+% -----
+% Seleciona o idioma do documento
+\selectlanguage{brazil}
+
+% Retira espaço extra obsoleto entre as frases
+\frenchspacing{}
+% -----
+
+% =====
+% ELEMENTOS PRÉ-TEXTUAIS
+% =====
+\pretextual{}
+
+% Página de titulo principal (obrigatório)
+\maketitle{}
+
+% Resumos
+\input{abstract}
+
+\begin{center}\smaller{}
+    \textbf{Data de submissão e aprovação}: 28 de agosto de 2024.
+\end{center}
+
+% =====
+
+% =====
+% ELEMENTOS TEXTUAIS
+% =====
+\textual{}
+
+Hello, World! \gls{pai}
+
+% =====
+
+% =====
+% ELEMENTOS PÓS-TEXTUAIS
+% =====
+\postextual{}
+
+% --- Referências ---
+\bibliography{bibliography}
+
+% --- Glossário ---
+\printglossaries{}
+
+% =====
+
+\end{document}
