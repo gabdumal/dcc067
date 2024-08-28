@@ -1,4 +1,45 @@
 \section{Metodologia}%
 \label{sec:metodologia}
 
-\todo[author=Gabriel]{Escrever}
+A fim de conduzir este trabalho, foi realizada uma pesquisa bibliográfica sobre \glspl{ga} e suas variações, o que possibilitou a compreensão do funcionamento desses algoritmos e a identificação de aspectos relevantes para a análise de sua performance.
+Assim, foram escolhidas duas funções de benchmark dentre as disponíveis no pacote \gls{opfunu}~\cite{opfunu_software}, uma convexa e outra não convexa.
+
+\subsection{Operadores}
+
+O objetivo central desta pesquisa é avaliar diferentes operadores de seleção e \gls{crossover}, com a intenção de entender como essas variações impactam os resultados dos experimentos.
+Para isso, foram escolhidos os seguintes operadores de seleção: roleta e torneio --- que foi testado com diferentes valores de \(K\), que representa a proporção de indivíduos selecionados para o torneio dentre a totalidade da população.
+Além disso, foram escolhidos os operadores de \gls{crossover} de um ponto e aritmético.
+
+Embora inicialmente o escopo do trabalho não contemplasse a introdução de mutações, foi necessário incluir alguma chance de mutação para evitar problemas de convergência prematura das soluções, o que poderia limitar significativamente a qualidade dos resultados obtidos.
+
+Assim, foram realizados testes preliminares com diferentes métodos de mutação disponíveis no pacote \gls{mealpy}~\cite{mealpy_software}.
+Os resultados desses revelaram que algumas técnicas, como \texttt{scramble} e \texttt{inverted}, eram incompatíveis com certas combinações de operadores --- como a combinação de seleção por roleta com crossover de um ponto.
+
+Em contraste, a mutação do tipo \texttt{flip} mostrou-se bastante razoável em termos de tempo de execução e resultados obtidos, independentemente da combinação de operadores utilizada (roleta, torneio, crossover de um ponto e crossover aritmético).
+Dessa forma, foi selecionada a mutação \texttt{flip} em todas as execuções do experimento.
+
+\subsection{Funções objetivo}
+
+Ademais, foi necessário ultrapassar os limites do escopo originalmente estabelecido também no que se refere ao número de dimensões avaliadas.
+O objetivo inicial era analisar as funções em 2 e 10 dimensões, o que não constitui uma limitação da biblioteca \gls{mealpy}.
+Entretanto, os arquivos que baseiam o pacote \gls{opfunu} apresentam as funções objetivo disponíveis em apenas cinco configurações: 10, 20, 30, 50 e 100 dimensões.
+
+Levando em conta que se esperava que as execuções para duas dimensões permitissem a visualização gráfica do espaço de busca delimitado pelas funções, e que tal artefato não pôde ser gerado pelo software, foram inclusos os gráficos gerados por \citeonline{cec2014}.
+Dessa forma, optou-se por avaliar as funções em 10 e 20 dimensões, que são os valores mais próximos daqueles inicialmente planejados.
+
+As duas funções objetivo escolhidas para a realização dos experimentos foram \gls{f1}, que é convexa e cuja representação gráfica é apresentada na \autoref{fig:f1}, e \gls{f5}, que é não convexa e cuja representação gráfica é apresentada na \autoref{fig:f5}.
+
+\begin{figure}[!ht]%
+    \centering
+    \includegraphics[scale=0.5]{img/f1.png}
+    \caption{Mapa 3D para a função \glsentryfull{f1} em duas dimensões. Fonte: \citeonline{cec2014}.}%
+    \label{fig:f1}
+\end{figure}
+
+\begin{figure}[!ht]%
+    \centering
+    \includegraphics[scale=0.5]{img/f5.png}
+    \caption{Mapa 3D para a função \glsentryfull{f5} em duas dimensões. Fonte: \citeonline{cec2014}.}%
+    \label{fig:f5}
+\end{figure}
+
