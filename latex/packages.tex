@@ -10,7 +10,7 @@
 \usepackage{graphicx}			% Inclusão de gráficos
 \usepackage{microtype} 			% Para melhorias de justificação
 \usepackage[brazilian,hyperpageref]{backref}	 % Páginas com as citações na bibliografia
-\usepackage[subentrycounter,seeautonumberlist,nonumberlist=true,acronym,nohypertypes={acronym}]{glossaries} % Glossário. Deve ser carregado depois de backref
+\usepackage[subentrycounter,seeautonumberlist,nonumberlist=true,acronym,nohypertypes={index}]{glossaries} % Glossário. Deve ser carregado depois de backref
 \usepackage[alf]{abntex2cite}	% Citações padrão ABNT. Deve ser carregado depois de glossaries
 \usepackage[portuguese]{todonotes}
 % -----
@@ -20,6 +20,11 @@
 % -----
 
 % --- Glossaries ---
+\newglossary[ilg]{index}{ind}{idx}{\indexname}
+\newcommand*{\newterm}[2]{
+    \newglossaryentry{#1}
+    {type=index,name={#2},description={\nopostdesc}}
+}
 \makeglossaries{} % Habilite este comando para permitir a impressão dos glossários
 \loadglsentries{glossaries}
 \renewcommand*{\glsclearpage}{} % Evita quebra de página entre os glossários
