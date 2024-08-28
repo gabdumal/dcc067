@@ -1,5 +1,17 @@
-\section{Introdução}
+\section{Introdução}%
+\label{sec:introducao}
 
 Este trabalho é requisito parcial para aprovação na disciplina \gls{disciplina}, do \gls{dcc} da \gls{ufjf}.
 
-Seu objetivo é avaliar o uso de seleção por roleta e por torneio com variações de \(K\), e avaliar o uso de \gls{crossover} de um ponto e aritmético.
+Seu objetivo é analisar a performance de \glspl{ga} ao encontrar soluções para problemas de otimização, em particular, a convergência e a qualidade das soluções encontradas.
+
+Nesse sentido, o escopo do trabalho é avaliar
+o uso de seleção por roleta e por torneio com variações de \(K\) --- o número de indivíduos selecionados para o torneio ---, além de avaliar o uso de \gls{crossover} de um ponto e aritmético.
+
+Para tal, foi desenvolvido um projeto na linguagem Python, a fim de executar experimentos computacionais.
+Como referência, foram utilizados classes de funções objetivo do \gls{cec14}, disponibilizadas pelo pacote \gls{opfunu}, que contém funções de benchmark para otimização~\cite{opfunu_paper}.
+Além disso, foi utilizada a classe \gls{esga} da biblioteca \gls{mealpy}, que contém implementações de diversos algoritmos evolutivos~\cite{mealpy_paper}.
+
+Com o código em operação, decidiu-se explorar as funções disponibilizadas pelo pacote, com o objetivo de selecionar uma função convexa e outra não convexa, que serviram como objetos de estudo no experimento.
+
+O restante deste trabalho está organizado da seguinte forma: a \autoref{sec:metodologia} descreve a metodologia utilizada para a realização dos experimentos; a \autoref{sec:resultados} apresenta os resultados obtidos; e a \autoref{sec:conclusao} apresenta as conclusões do trabalho.

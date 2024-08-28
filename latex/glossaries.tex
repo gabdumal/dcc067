@@ -2,8 +2,34 @@
 
 \newacronym{dcc}{DCC}{Departamento de Ciência da Computação}
 \newacronym{ufjf}{UFJF}{Universidade Federal de Juiz de Fora}
+\newacronym[
+    description={Algoritmo Genético, do inglês \textit{Genetic Algorithm}, é uma técnica de otimização baseada em evolução biológica},
+    plural={GAs},
+    longplural={Algoritmos Genéticos}
+]{ga}{GA}{Algoritmo Genético}
+\newacronym[
+    description={Congresso de Computação Evolucionária, do inglês \textit{Congress on Evolutionary Computation}, organizado pelo IEEE no ano de 2014 \cite{cec2014}},
+]{cec14}{CEC 2014}{Congress on Evolutionary Computation 2014}
 
 \newglossaryentry{crossover}{
-    name={\textit{crossover}},
+    name={Crossover},
+    text={\textit{crossover}},
     description={Operador genético que combina dois indivíduos para gerar um ou mais descendentes}
+}
+\newglossaryentry{opfunu}{
+    name={Opfunu},
+    text={\textit{opfunu}},
+    description={Pacote de funções de benchmark para otimização \cite{opfunu_software}}
+}
+\newglossaryentry{mealpy}{
+    name={Mealpy},
+    text={\textit{mealpy}},
+    description={Biblioteca de algoritmos evolutivos \cite{mealpy_software}}
+}
+\newglossaryentry{esga}{
+    name={EliteSingleGA},
+    text={\textit{EliteSingleGA}},
+    description={Classe de algoritmo evolutivo da biblioteca \gls{mealpy}, que aplica método de elitismo
+        },
+    see={mealpy}
 }

@@ -35,12 +35,12 @@
 % Texto padrão antes do número das páginas
 \renewcommand{\backref}{}
 % Define os textos da citação
-\renewcommand*{\backrefalt}[4]{
-    \ifcase #1 %
+\renewcommand*{\backrefalt}[4]{%
+    \ifcase #1%
         Nenhuma citação no texto.%
-    \or
+    \or%
         Citado na página #2.%
-    \else
+    \else%
         Citado #1 vezes nas páginas #2.%
     \fi}%
 
