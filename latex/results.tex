@@ -7,7 +7,7 @@ Os valores obtidos pelo experimento são apresentados em planilhas eletrônicas,
 \subsection{Análise dos Resultados}%
 
 A partir dos resultados obtidos, é possível analisar o desempenho dos algoritmos em cada um dos problemas propostos.
-Para isso, com base nos valores de \gls{fitness} das execuções, foram calculadas as médias, os desvios padrão --- representados por \( \sigma \) --- e a discrepância da solução encontrada em relação à solução ótima conhecida, além de lista o melhor valor dentre as 10 execuções de cada variante.
+Para isso, com base nos valores de \gls{fitness} das execuções, foram calculadas as médias, os desvios padrão --- representados por \( \sigma \) --- e a discrepância da solução encontrada em relação à solução ótima conhecida, além de listar o melhor valor dentre as 10 execuções de cada variante.
 A \autoref{tab:fitness_10} apresenta os resultados obtidos para os problemas \gls{f1} e \gls{f5} em 10 dimensões. Já a \autoref{tab:fitness_20} apresenta os resultados obtidos para os problemas \gls{f1} e \gls{f5} em 20 dimensões.
 
 
@@ -99,11 +99,6 @@ A \autoref{tab:fitness_10} apresenta os resultados obtidos para os problemas \gl
     \label{tab:fitness_20}
 \end{table}
 
-Enquanto se ajustavam as constantes, foram empiricamente feitas algumas percepções.
-Observou-se que, após 5.000 gerações, não havia melhorias significativas na aptidão média dos indivíduos.
-A probabilidade do operador de crossover foi ajustada entre 0,8 e 0,95 (valor máximo aceito pela biblioteca), isto não alterou a qualidade da solução, porém os valores menores levavam a função a convergir ligeiramente mais tarde (após mais gerações).
-Dessa forma, foi selecionado o valor de 0,95 para o operador de crossover.
-
 Nos casos em que o operador de seleção por torneio foi utilizado para a função \gls{f1}, o valor de \( K \) foi modificado entre 0,1 e 0,5 aumentando sempre em 0,1.
 Neste caso foi possível observar uma ligeira piora da solução em ambos os extremos.
 O valor que encontrou os melhores resultados foi 0,2 (padrão da biblioteca).
@@ -111,7 +106,7 @@ Foi bastante notório que este valor levava o algoritmo a convergir mais tarde, 
 Os valores associados ao elitismo não foram alterados, mantendo-se os padrões da biblioteca, com 0,1 para o elitismo de melhores indivíduos e 0,3 para o de piores.
 
 Acerca das funções de benchmark, a \gls{f1} apresentou resultados menos satisfatórios, com discrepâncias de até 16.665.585,89 e 22.526.366,97 em 10 e 20 dimensões, respectivamente.
-Estes valores são bastante elevados, considerando que a função \gls{f1} é convexa e possui um mínimo global conhecido de 100
+Estes valores são bastante elevados, considerando que a função \gls{f1} é convexa e possui um mínimo global conhecido de 100.
 
 Por outro lado, a função \gls{f5} apresentou resultados mais satisfatórios, com discrepâncias de até 20,36 e 20,78 em 10 e 20 dimensões, respectivamente, levando em consideração que a função \gls{f5} é não convexa e possui um mínimo global conhecido de 500.
 Estes valores são mais próximos do esperado, indicando que o \gls{ga} apresenta características que o tornam mais eficiente para este tipo de função.
