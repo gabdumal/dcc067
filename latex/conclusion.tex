@@ -1,4 +1,8 @@
 \section{Conclusão}%
 \label{sec:conclusao}
 
-\todo[author=Gabriel]{Escrever}
+Os resultados obtidos neste experimento evidenciam tanto as limitações quanto os potenciais do algoritmo genético quando aplicado às funções \gls{f1} e \gls{f5}. No caso da função \gls{f1}, observamos que os resultados ficaram significativamente piores do que o ótimo global, indicando que a mutação utilizada, mesmo com uma taxa de 5\%, não foi suficiente para explorar o espaço de busca de forma satisfatória. Isso sugere que o algoritmo pode ter convergido prematuramente para ótimos locais. No entanto, além da mutação, outros fatores podem ter contribuído para o desempenho insatisfatório, como a própria natureza do algoritmo genético, que pode não ser ideal para otimizar funções convexas como \gls{f1}.
+
+Por outro lado, a função \gls{f5}, que possui uma topologia não convexa e mais íngreme, obteve resultados muito próximos do ótimo global. Isso sugere que o algoritmo genético é particularmente eficaz para este tipo de função, onde a exploração e os saltos no espaço de busca são mais facilmente capturados e otimizados.
+
+Esses resultados ressaltam a importância de se considerar a adequação do algoritmo ao tipo de função a ser otimizada. Em algumas situações, como no caso da função \gls{f1}, o algoritmo genético pode não ser a melhor escolha, enquanto para funções como \gls{f5}, ele se mostra bastante eficiente. Essa conclusão aponta para a necessidade de uma análise cuidadosa na seleção de algoritmos de otimização, levando em conta tanto os operadores quanto a natureza das funções envolvidas.
