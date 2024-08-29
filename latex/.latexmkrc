@@ -7,4 +7,6 @@ sub makeglossaries {
 }
 
 $bibtex_use = 1;
+$aux_dir = '.build';  # Set the auxiliary directory to .build
+$out_dir = '.build';  # Set the output directory to .build
 $clean_ext .= ' %R.glg %R.glo %R.gls %R.alg %R.acn %R.acr %R.blg';
