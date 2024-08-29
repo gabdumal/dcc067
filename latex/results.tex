@@ -1,4 +1,111 @@
 \section{Resultados}%
 \label{sec:resultados}
 
-\todo[author=Gabriel]{Escrever}
+Nesta seção, são apresentados os resultados obtidos a partir da execução dos experimentos descritos na \autoref{sec:metodologia}.
+Os valores obtidos pelo experimento são apresentados em planilhas eletrônicas, disponíveis para os problemas em 10 dimensões\footnote{Resultados do experimento para problema de 10 dimensões. Disponível em: \url{https://docs.google.com/spreadsheets/d/1bOAUmGv3ZejnVMTojSYcHIgnF4cwjmHWzkgA4WuXQwg/edit?usp=sharing}} e em 20 dimensões\footnote{Resultados do experimento para problema de 20 dimensões. Disponível em: \url{https://docs.google.com/spreadsheets/d/1HRjwZU50QHC8F-N6ofHfJgo7oWcU0-PTe3e8cokZ4Gc/edit?usp=sharing}}.
+
+\subsection{Análise dos Resultados}%
+
+A partir dos resultados obtidos, é possível analisar o desempenho dos algoritmos em cada um dos problemas propostos.
+Para isso, com base nos valores de \gls{fitness} das execuções, foram calculadas as médias, os desvios padrão --- representados por \( \sigma \) --- e a discrepância da solução encontrada em relação à solução ótima conhecida, além de lista o melhor valor dentre as 10 execuções de cada variante.
+A \autoref{tab:fitness_10} apresenta os resultados obtidos para os problemas \gls{f1} e \gls{f5} em 10 dimensões. Já a \autoref{tab:fitness_20} apresenta os resultados obtidos para os problemas \gls{f1} e \gls{f5} em 20 dimensões.
+
+
+\begin{table}[!ht]
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{llllllll}
+            \bottomrule
+            \textbf{Obj.\ func.}                       &
+            \textbf{Crossover}                         &
+            \textbf{Selection}                         &
+            \textbf{\( \boldsymbol{K} \)}              &
+            \textbf{Best fitness}                      &
+            \textbf{Average fitness}                   &
+            \textbf{Fitness \( \boldsymbol{\sigma} \)} &
+            \textbf{Discrepancy}                                                                                                                                    \\ \midrule
+            F12014                                     & one\_point & roulette   & None & 5427918.33979171 & 7751338.57081459 & 8721732.83853752 & 7751238.57081459 \\
+            F12014                                     & one\_point & tournament & 0.1  & 1984810.70650962 & 8157306.04765925 & 5039684.3624863  & 8157206.04765925 \\
+            F12014                                     & one\_point & tournament & 0.2  & 626253.429685974 & 626253.429685974 & 2977922.46536919 & 626153.429685974 \\
+            F12014                                     & one\_point & tournament & 0.3  & 251279.864132482 & 3235163.91382274 & 1967444.84212688 & 3235063.91382274 \\
+            F12014                                     & one\_point & tournament & 0.4  & 136152.150909522 & 253057.34708956  & 778614.731053803 & 252957.34708956  \\
+            F12014                                     & one\_point & tournament & 0.5  & 125213.298338222 & 226509.587374654 & 300636.402255448 & 226409.587374654 \\
+            F12014                                     & arithmetic & roulette   & None & 9355133.38757311 & 16665685.8879497 & 15026194.6814538 & 16665585.8879497 \\
+            F12014                                     & arithmetic & tournament & 0.1  & 4044396.31180613 & 5997148.85953819 & 5881057.14081901 & 5997048.85953819 \\
+            F12014                                     & arithmetic & tournament & 0.2  & 332668.027385679 & 332668.027385679 & 839066.417404317 & 332568.027385679 \\
+            F12014                                     & arithmetic & tournament & 0.3  & 179742.673298917 & 179742.673298917 & 345012.156119228 & 179642.673298917 \\
+            F12014                                     & arithmetic & tournament & 0.4  & 98441.2720116568 & 98441.2720116568 & 181654.003819024 & 98341.2720116568 \\
+            F12014                                     & arithmetic & tournament & 0.5  & 60784.8150075337 & 152272.227795476 & 143231.766026062 & 152172.227795476 \\
+            F52014                                     & one\_point & roulette   & None & 520.153869628017 & 520.190029557369 & 520.206205973726 & 20.190029557369  \\
+            F52014                                     & one\_point & tournament & 0.1  & 519.218819851822 & 519.218819851822 & 520.097121603492 & 19.218819851822  \\
+            F52014                                     & one\_point & tournament & 0.2  & 519.627143813718 & 520.075973451038 & 520.026764650662 & 20.075973451038  \\
+            F52014                                     & one\_point & tournament & 0.3  & 510.250433432984 & 520.074364598558 & 518.300749594073 & 20.074364598558  \\
+            F52014                                     & one\_point & tournament & 0.4  & 507.631707166332 & 510.61171437311  & 516.728168286602 & 10.61171437311   \\
+            F52014                                     & one\_point & tournament & 0.5  & 519.478869574556 & 519.796179559457 & 519.83033147921  & 19.796179559457  \\
+            F52014                                     & arithmetic & roulette   & None & 520.006257560618 & 520.172127755495 & 520.230881018337 & 20.172127755495  \\
+            F52014                                     & arithmetic & tournament & 0.1  & 518.989182072634 & 520.356217114915 & 520.125677509273 & 20.356217114915  \\
+            F52014                                     & arithmetic & tournament & 0.2  & 508.052479806679 & 511.329989632727 & 512.625817634204 & 11.329989632727  \\
+            F52014                                     & arithmetic & tournament & 0.3  & 506.657757895298 & 507.198366189699 & 507.894446736264 & 7.19836618969902 \\
+            F52014                                     & arithmetic & tournament & 0.4  & 506.469550027749 & 507.269168416325 & 508.79476805523  & 7.26916841632499 \\
+            F52014                                     & arithmetic & tournament & 0.5  & 506.510485566376 & 508.446009678261 & 508.782671920533 & 8.44600967826102 \\
+            \toprule
+        \end{tabular}%
+    }
+    \caption{Resultados obtidos para os problemas \glsentryname{f1} e \glsentryname{f5} em 10 dimensões.
+    }%
+    \label{tab:fitness_10}
+\end{table}
+
+\begin{table}[!ht]
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{llllllll}
+            \bottomrule
+            \textbf{Obj.\ func.}                       &
+            \textbf{Crossover}                         &
+            \textbf{Selection}                         &
+            \textbf{\( \boldsymbol{K} \)}              &
+            \textbf{Best fitness}                      &
+            \textbf{Average fitness}                   &
+            \textbf{Fitness \( \boldsymbol{\sigma} \)} &
+            \textbf{Discrepancy}                                                                                                                                    \\ \midrule
+            F12014                                     & one\_point & roulette   & None & 31333596.3190147 & 70748960.920286  & 51840884.7572562 & 70748860.920286  \\
+            F12014                                     & one\_point & tournament & 0.1  & 6459590.39480777 & 6792308.18097886 & 8170932.27948411 & 6792208.18097886 \\
+            F12014                                     & one\_point & tournament & 0.2  & 501184.7661836   & 1032981.76946501 & 1011075.89549635 & 1032881.76946501 \\
+            F12014                                     & one\_point & tournament & 0.3  & 216342.152839148 & 322831.737551326 & 703931.584086853 & 322731.737551326 \\
+            F12014                                     & one\_point & tournament & 0.4  & 213078.252876835 & 500167.889775615 & 699594.388821772 & 500067.889775615 \\
+            F12014                                     & one\_point & tournament & 0.5  & 257286.406108028 & 257286.406108028 & 850689.196764531 & 257186.406108028 \\
+            F12014                                     & arithmetic & roulette   & None & 149508377.646406 & 225263769.9723   & 194305830.33993  & 225263669.9723   \\
+            F12014                                     & arithmetic & tournament & 0.1  & 4554550.00823453 & 5532338.84861811 & 6522961.69403024 & 5532238.84861811 \\
+            F12014                                     & arithmetic & tournament & 0.2  & 418897.695143256 & 639570.433869927 & 658253.989220955 & 639470.433869927 \\
+            F12014                                     & arithmetic & tournament & 0.3  & 202876.414639389 & 557927.626946059 & 402340.968125533 & 557827.626946059 \\
+            F12014                                     & arithmetic & tournament & 0.4  & 143574.026060294 & 471378.48887553  & 506514.54505159  & 471278.48887553  \\
+            F12014                                     & arithmetic & tournament & 0.5  & 124955.957570499 & 507071.530394828 & 409121.443273183 & 506971.530394828 \\
+            F52014                                     & one\_point & roulette   & None & 520.194571554244 & 520.256497652031 & 520.243187209299 & 20.256497652031  \\
+            F52014                                     & one\_point & tournament & 0.1  & 520.155268810552 & 520.184221506583 & 520.183697926227 & 20.184221506583  \\
+            F52014                                     & one\_point & tournament & 0.2  & 520.040444074805 & 520.070985641    & 520.072480005911 & 20.070985641     \\
+            F52014                                     & one\_point & tournament & 0.3  & 520.056984799441 & 520.061571732257 & 520.064791414521 & 20.061571732257  \\
+            F52014                                     & one\_point & tournament & 0.4  & 520.038971650538 & 520.053129980164 & 520.052311713416 & 20.053129980164  \\
+            F52014                                     & one\_point & tournament & 0.5  & 520.041245397487 & 520.044260884636 & 520.048850890464 & 20.0442608846359 \\
+            F52014                                     & arithmetic & roulette   & None & 520.598927147798 & 520.779814372364 & 520.703065457611 & 20.7798143723639 \\
+            F52014                                     & arithmetic & tournament & 0.1  & 520.533414813897 & 520.776239731026 & 520.696414789363 & 20.776239731026  \\
+            F52014                                     & arithmetic & tournament & 0.2  & 509.850397301972 & 520.540952957284 & 518.684311663996 & 20.5409529572841 \\
+            F52014                                     & arithmetic & tournament & 0.3  & 509.643235230714 & 520.471257330042 & 517.265198084727 & 20.471257330042  \\
+            F52014                                     & arithmetic & tournament & 0.4  & 520.300994617457 & 520.415236044564 & 520.376415100527 & 20.415236044564  \\
+            F52014                                     & arithmetic & tournament & 0.5  & 520.25573609927  & 520.342301041178 & 520.307246082246 & 20.342301041178  \\
+            \toprule
+        \end{tabular}%
+    }
+    \caption{Resultados obtidos para os problemas \glsentryname{f1} e \glsentryname{f5} em 20 dimensões.
+    }%
+    \label{tab:fitness_20}
+\end{table}
+
+Enquanto se ajustavam as constantes, foram empiricamente feitas algumas percepções.
+Observou-se que, após 5.000 gerações, não havia melhorias significativas na aptidão média dos indivíduos.
+A probabilidade do operador de crossover foi ajustada entre 0,8 e 0,95 (valor máximo aceito pela biblioteca), isto não alterou a qualidade da solução, porém os valores menores levavam a função a convergir ligeiramente mais tarde (após mais gerações).
+Dessa forma, foi selecionado o valor de 0,95 para o operador de crossover.
+
+Nos casos em que o operador de seleção por torneio foi utilizado para a função \gls{f1}, o valor de \( K \) foi modificado entre 0,1 e 0,5 aumentando sempre em 0,1.
+Neste caso foi possível observar uma ligeira piora da solução em ambos os extremos.
+O valor que encontrou os melhores resultados foi 0,2 (padrão da biblioteca).
+Foi bastante notório que este valor levava o algoritmo a convergir mais tarde, com cerca de 4000 gerações.
+Os valores associados ao elitismo não foram alterados, mantendo-se os padrões da biblioteca, com 0,1 para o elitismo de melhores indivíduos e 0,3 para o de piores.
