@@ -1,4 +1,125 @@
 \section{Resultados}%
 \label{sec:resultados}
 
-\todo[author=Gabriel]{Escrever}
+Nesta seção, são apresentados os resultados obtidos a partir da execução dos experimentos descritos na \autoref{sec:metodologia}.
+Os valores obtidos pelo experimento são apresentados em planilhas eletrônicas, disponíveis para os problemas em 10 dimensões\footnote{Resultados do experimento para problema de 10 dimensões. Disponível em: \url{https://docs.google.com/spreadsheets/d/1bOAUmGv3ZejnVMTojSYcHIgnF4cwjmHWzkgA4WuXQwg/edit?usp=sharing}} e em 20 dimensões\footnote{Resultados do experimento para problema de 20 dimensões. Disponível em: \url{https://docs.google.com/spreadsheets/d/1HRjwZU50QHC8F-N6ofHfJgo7oWcU0-PTe3e8cokZ4Gc/edit?usp=sharing}}.
+
+\subsection{Análise dos Resultados}%
+
+A partir dos resultados obtidos, é possível analisar o desempenho dos algoritmos em cada um dos problemas propostos.
+Para isso, com base nos valores de \gls{fitness} das execuções, foram calculadas as médias, os desvios padrão --- representados por \( \sigma \) --- e a discrepância da solução encontrada em relação à solução ótima conhecida, além de lista o melhor valor dentre as 10 execuções de cada variante.
+A \autoref{tab:fitness_10} apresenta os resultados obtidos para os problemas \gls{f1} e \gls{f5} em 10 dimensões. Já a \autoref{tab:fitness_20} apresenta os resultados obtidos para os problemas \gls{f1} e \gls{f5} em 20 dimensões.
+
+
+\begin{table}[!ht]
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{llllrrrr}
+            \bottomrule
+            \textbf{Obj.\ func.}                       &
+            \textbf{Crossover}                         &
+            \textbf{Selection}                         &
+            \textbf{\( \boldsymbol{K} \)}              &
+            \textbf{Best fitness}                      &
+            \textbf{Average fitness}                   &
+            \textbf{Fitness \( \boldsymbol{\sigma} \)} &
+            \textbf{Discrepancy}                                                                                                                       \\ \midrule
+            F12014                                     & one\_point & roulette   & None & 5,427,918.34 & 7,751,338.57  & 8,721,732.84  & 7,751,238.57  \\
+            F12014                                     & one\_point & tournament & 0.1  & 1,984,810.71 & 8,157,306.05  & 5,039,684.36  & 8,157,206.05  \\
+            F12014                                     & one\_point & tournament & 0.2  & 626,253.43   & 626,253.43    & 2,977,922.47  & 626,153.43    \\
+            F12014                                     & one\_point & tournament & 0.3  & 251,279.86   & 3,235,163.91  & 1,967,444.84  & 3,235,063.91  \\
+            F12014                                     & one\_point & tournament & 0.4  & 136,152.15   & 253,057.35    & 778,614.73    & 252,957.35    \\
+            F12014                                     & one\_point & tournament & 0.5  & 125,213.30   & 226,509.59    & 300,636.40    & 226,409.59    \\
+            F12014                                     & arithmetic & roulette   & None & 9,355,133.39 & 16,665,685.89 & 15,026,194.68 & 16,665,585.89 \\
+            F12014                                     & arithmetic & tournament & 0.1  & 4,044,396.31 & 5,997,148.86  & 5,881,057.14  & 5,997,048.86  \\
+            F12014                                     & arithmetic & tournament & 0.2  & 332,668.03   & 332,668.03    & 839,066.42    & 332,568.03    \\
+            F12014                                     & arithmetic & tournament & 0.3  & 179,742.67   & 179,742.67    & 345,012.16    & 179,642.67    \\
+            F12014                                     & arithmetic & tournament & 0.4  & 98,441.27    & 98,441.27     & 181,654.00    & 98,341.27     \\
+            F12014                                     & arithmetic & tournament & 0.5  & 60,784.82    & 152,272.23    & 143,231.77    & 152,172.23    \\
+            F52014                                     & one\_point & roulette   & None & 520.15       & 520.19        & 520.21        & 20.19         \\
+            F52014                                     & one\_point & tournament & 0.1  & 519.22       & 519.22        & 520.10        & 19.22         \\
+            F52014                                     & one\_point & tournament & 0.2  & 519.63       & 520.08        & 520.03        & 20.08         \\
+            F52014                                     & one\_point & tournament & 0.3  & 510.25       & 520.07        & 518.30        & 20.07         \\
+            F52014                                     & one\_point & tournament & 0.4  & 507.63       & 510.61        & 516.73        & 10.61         \\
+            F52014                                     & one\_point & tournament & 0.5  & 519.48       & 519.80        & 519.83        & 19.80         \\
+            F52014                                     & arithmetic & roulette   & None & 520.01       & 520.17        & 520.23        & 20.17         \\
+            F52014                                     & arithmetic & tournament & 0.1  & 518.99       & 520.36        & 520.13        & 20.36         \\
+            F52014                                     & arithmetic & tournament & 0.2  & 508.05       & 511.33        & 512.63        & 11.33         \\
+            F52014                                     & arithmetic & tournament & 0.3  & 506.66       & 507.20        & 507.89        & 7.20          \\
+            F52014                                     & arithmetic & tournament & 0.4  & 506.47       & 507.27        & 508.79        & 7.27          \\
+            F52014                                     & arithmetic & tournament & 0.5  & 506.51       & 508.45        & 508.78        & 8.45          \\
+            \toprule
+        \end{tabular}%
+    }
+    \caption{Resultados obtidos para os problemas \glsentryname{f1} e \glsentryname{f5} em 10 dimensões.
+    }%
+    \label{tab:fitness_10}
+\end{table}
+
+\begin{table}[!ht]
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{llllrrrr}
+            \bottomrule
+            \textbf{Obj.\ func.}                       &
+            \textbf{Crossover}                         &
+            \textbf{Selection}                         &
+            \textbf{\( \boldsymbol{K} \)}              &
+            \textbf{Best fitness}                      &
+            \textbf{Average fitness}                   &
+            \textbf{Fitness \( \boldsymbol{\sigma} \)} &
+            \textbf{Discrepancy}                                                                                                                            \\ \midrule
+            F12014                                     & one\_point & roulette   & None & 31,333,596.32  & 70,748,960.92  & 51,840,884.76  & 70,748,860.92  \\
+            F12014                                     & one\_point & tournament & 0.1  & 6,459,590.39   & 6,792,308.18   & 8,170,932.28   & 6,792,208.18   \\
+            F12014                                     & one\_point & tournament & 0.2  & 501,184.77     & 1,032,981.77   & 1,011,075.90   & 1,032,881.77   \\
+            F12014                                     & one\_point & tournament & 0.3  & 216,342.15     & 322,831.74     & 703,931.58     & 322,731.74     \\
+            F12014                                     & one\_point & tournament & 0.4  & 213,078.25     & 500,167.89     & 699,594.39     & 500,067.89     \\
+            F12014                                     & one\_point & tournament & 0.5  & 257,286.41     & 257,286.41     & 850,689.20     & 257,186.41     \\
+            F12014                                     & arithmetic & roulette   & None & 149,508,377.65 & 225,263,769.97 & 194,305,830.34 & 225,263,669.97 \\
+            F12014                                     & arithmetic & tournament & 0.1  & 4,554,550.01   & 5,532,338.85   & 6,522,961.69   & 5,532,238.85   \\
+            F12014                                     & arithmetic & tournament & 0.2  & 418,897.70     & 639,570.43     & 658,253.99     & 639,470.43     \\
+            F12014                                     & arithmetic & tournament & 0.3  & 202,876.41     & 557,927.63     & 402,340.97     & 557,827.63     \\
+            F12014                                     & arithmetic & tournament & 0.4  & 143,574.03     & 471,378.49     & 506,514.55     & 471,278.49     \\
+            F12014                                     & arithmetic & tournament & 0.5  & 124,955.96     & 507,071.53     & 409,121.44     & 506,971.53     \\
+            F52014                                     & one\_point & roulette   & None & 520.19         & 520.26         & 520.24         & 20.26          \\
+            F52014                                     & one\_point & tournament & 0.1  & 520.16         & 520.18         & 520.18         & 20.18          \\
+            F52014                                     & one\_point & tournament & 0.2  & 520.04         & 520.07         & 520.07         & 20.07          \\
+            F52014                                     & one\_point & tournament & 0.3  & 520.06         & 520.06         & 520.06         & 20.06          \\
+            F52014                                     & one\_point & tournament & 0.4  & 520.04         & 520.05         & 520.05         & 20.05          \\
+            F52014                                     & one\_point & tournament & 0.5  & 520.04         & 520.04         & 520.05         & 20.04          \\
+            F52014                                     & arithmetic & roulette   & None & 520.60         & 520.78         & 520.70         & 20.78          \\
+            F52014                                     & arithmetic & tournament & 0.1  & 520.53         & 520.78         & 520.70         & 20.78          \\
+            F52014                                     & arithmetic & tournament & 0.2  & 509.85         & 520.54         & 518.68         & 20.54          \\
+            F52014                                     & arithmetic & tournament & 0.3  & 509.64         & 520.47         & 517.27         & 20.47          \\
+            F52014                                     & arithmetic & tournament & 0.4  & 520.30         & 520.42         & 520.38         & 20.42          \\
+            F52014                                     & arithmetic & tournament & 0.5  & 520.26         & 520.34         & 520.31         & 20.34          \\
+            \toprule
+        \end{tabular}%
+    }
+    \caption{Resultados obtidos para os problemas \glsentryname{f1} e \glsentryname{f5} em 20 dimensões.
+    }%
+    \label{tab:fitness_20}
+\end{table}
+
+Enquanto se ajustavam as constantes, foram empiricamente feitas algumas percepções.
+Observou-se que, após 5.000 gerações, não havia melhorias significativas na aptidão média dos indivíduos.
+A probabilidade do operador de crossover foi ajustada entre 0,8 e 0,95 (valor máximo aceito pela biblioteca), isto não alterou a qualidade da solução, porém os valores menores levavam a função a convergir ligeiramente mais tarde (após mais gerações).
+Dessa forma, foi selecionado o valor de 0,95 para o operador de crossover.
+
+Nos casos em que o operador de seleção por torneio foi utilizado para a função \gls{f1}, o valor de \( K \) foi modificado entre 0,1 e 0,5 aumentando sempre em 0,1.
+Neste caso foi possível observar uma ligeira piora da solução em ambos os extremos.
+O valor que encontrou os melhores resultados foi 0,2 (padrão da biblioteca).
+Foi bastante notório que este valor levava o algoritmo a convergir mais tarde, com cerca de 4000 gerações.
+Os valores associados ao elitismo não foram alterados, mantendo-se os padrões da biblioteca, com 0,1 para o elitismo de melhores indivíduos e 0,3 para o de piores.
+
+Acerca das funções de benchmark, a \gls{f1} apresentou resultados menos satisfatórios, com discrepâncias de até 16.665.585,89 e 22.526.366,97 em 10 e 20 dimensões, respectivamente.
+Estes valores são bastante elevados, considerando que a função \gls{f1} é convexa e possui um mínimo global conhecido de 100
+
+Por outro lado, a função \gls{f5} apresentou resultados mais satisfatórios, com discrepâncias de até 20,36 e 20,78 em 10 e 20 dimensões, respectivamente, levando em consideração que a função \gls{f5} é não convexa e possui um mínimo global conhecido de 500.
+Estes valores são mais próximos do esperado, indicando que o \gls{ga} apresenta características que o tornam mais eficiente para este tipo de função.
+
+A seleção por roleta esteve entre os piores resultados. Seus valores de \gls{fitness} médio figuravam como 16.665.685,89 e 225.263.769,97, para 10 e 20 dimensões.
+A seleção por torneio, por outro lado, apresentou resultados mais satisfatórios.
+Embora com o \( K \) em 0.1 tenha apresentado valores ruins, com 8.157.306,05 e 6.792.308,18, para 10 e 20 dimensões, respectivamente, os valores de \( K \) em 0.4 levou ao \gls{fitness} médio de 98.441,27 para 10 dimensões, e em 0.5 levou a um valor de adequação de 257.286,41 para 20 dimensões.
+É possível propor a hipótese de que uma menor pressão seletiva, como a proporcionada por \( K \) em valores maiores, pode levar a uma maior diversidade genética, o que pode ser benéfico para a convergência do algoritmo.
+
+Apesar de o operador de \gls{crossover} por aritmética ter apresentado o pior resultado para a função \gls{f1}, com 16.665.685,89 para 10 dimensões, deve-se observar que, neste caso, ele estava associado à seleção por roleta.
+Quando o observa junto à seleção por torneio com \( K \) em 0.4, o valor de adequação médio obtido foi de 98.441,27, o melhor para essa função nesse número de dimensões.

@@ -121,28 +121,31 @@ def compile_results(experiment_identifier: str):
                                     seed,
                                     solution_output,
                                 )
-                        for tournament_percentage in tournament_percentages:
-                            result_path = get_results_directories_paths_for_tournament(
-                                experiment_identifier,
-                                dimensions,
-                                objetive_function,
-                                crossover,
-                                tournament_percentage,
-                            )
-                            for file_name in os.listdir(result_path):
-                                seed = file_name.split(".")[0]
-                                solution_output = get_solution_output(
-                                    os.path.join(result_path, file_name)
+                        else:
+                            for tournament_percentage in tournament_percentages:
+                                result_path = (
+                                    get_results_directories_paths_for_tournament(
+                                        experiment_identifier,
+                                        dimensions,
+                                        objetive_function,
+                                        crossover,
+                                        tournament_percentage,
+                                    )
                                 )
-                                write_csv_line(
-                                    file,
-                                    objetive_function,
-                                    crossover,
-                                    selection,
-                                    tournament_percentage,
-                                    seed,
-                                    solution_output,
-                                )
+                                for file_name in os.listdir(result_path):
+                                    seed = file_name.split(".")[0]
+                                    solution_output = get_solution_output(
+                                        os.path.join(result_path, file_name)
+                                    )
+                                    write_csv_line(
+                                        file,
+                                        objetive_function,
+                                        crossover,
+                                        selection,
+                                        tournament_percentage,
+                                        seed,
+                                        solution_output,
+                                    )
 
 
 def experiment_exists(experiment_identifier: str):
