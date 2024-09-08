@@ -1,7 +1,7 @@
 import random
 import sys
 
-from opfunu.cec_based.cec2014 import F12014, F42014, F52014
+from opfunu.cec_based.cec2005 import F62005, F92005
 from termcolor import colored
 
 from other.square_sum import SquareSum
@@ -28,10 +28,10 @@ def header():
     print()
 
 
-if len(sys.argv) < 9:
+if len(sys.argv) < 12:
     print(
         colored(
-            "Usage: python main.py <experiment_identifier> <dimensions> <objective_function> <crossover> <selection> <tournament_percentage> <export_parameters> <seed>",
+            "Usage: python main.py <experiment_identifier> <dimensions> <objective_function> <crossover> <selection> <tournament_percentage> <export_parameters> <seed> <p_local> <max_local_gens> <bits_per_param>",
             "red",
         )
     )
@@ -58,12 +58,12 @@ except ValueError:
 objective_function_arg = sys.argv[3]
 if objective_function_arg == "SquareSum":
     objective_function = SquareSum
-elif objective_function_arg == "F12014":
-    objective_function = F12014
-elif objective_function_arg == "F42014":
-    objective_function = F42014
-elif objective_function_arg == "F52014":
-    objective_function = F52014
+elif objective_function_arg == "F62005":
+    objective_function = F62005
+elif objective_function_arg == "F92005":
+    objective_function = F92005
+# elif objective_function_arg == "F52014":
+#     objective_function = F52014
 else:
     print(colored("Objective function not found", "red"))
     exit(1)
@@ -122,8 +122,39 @@ else:
         print(colored("Seed must be an integer", "red"))
         exit(1)
 
+p_local_arg = sys.argv[9]
+try:
+    p_local = float(p_local_arg)
+    if p_local <= 0 or p_local >= 1:
+        print(colored("p_local must be between 0 and 1 exclusive", "red"))
+        exit(1)
+except ValueError:
+    print(colored("p_local must be a float", "red"))
+    exit(1)
+
+max_local_gens_arg = sys.argv[10]
+try:
+    max_local_gens = int(max_local_gens_arg)
+    if max_local_gens <= 0:
+        print(colored("max_local_gens must be a positive integer", "red"))
+        exit(1)
+except ValueError:
+    print(colored("max_local_gens must be an integer", "red"))
+    exit(1)
+
+bits_per_param_arg = sys.argv[11]
+try:
+    bits_per_param = int(bits_per_param_arg)
+    if bits_per_param <= 0:
+        print(colored("bits_per_param must be a positive integer", "red"))
+        exit(1)
+except ValueError:
+    print(colored("bits_per_param must be an integer", "red"))
+    exit(1)
+
 
 header()
+
 search(
     experiment_identifier,
     dimensions,
@@ -134,4 +165,7 @@ search(
     tournament_percentage,
     export_parameters,
     seed,
+    p_local,
+    max_local_gens,
+    bits_per_param,
 )

@@ -5,7 +5,7 @@ mutation: str = "flip"
 mutation_rate: float = 0.05
 elitism_best_rate: float = 0.1
 elitism_worst_rate: float = 0.3
-epochs: int = 10000
+epochs: int = 5000
 
 # CEC-2014 functions
 
