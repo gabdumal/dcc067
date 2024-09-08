@@ -7,7 +7,7 @@ project_root = os.path.dirname(
 )
 
 possible_dimensions = [10, 20]
-objetive_functions = ["F12014", "F42014", "F52014"]
+objetive_functions = ["F12014", "F42014", "F52014", "F62005", "F92005"]
 crossovers = ["one_point", "arithmetic"]
 selections = ["roulette", "tournament"]
 tournament_percentages = [0.1, 0.2, 0.3, 0.4, 0.5]
