@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "DCC067 Computação Evolucionista"
-echo "Experimento com o algoritmo genético EliteSingleGA"
+echo "Experimento com o algoritmo genético OriginalMA"
 echo
 
 readonly possible_dimensions=(10)
@@ -36,14 +36,14 @@ for objective_function in ${objective_functions[@]}; do
                         for tournament_percentage in ${tournament_percentages[@]}; do
                             echo "Executando iteração ($execution/$total_executions)."
                             echo "Seleção: $selection. Crossover: $crossover. Torneio: $tournament_percentage."
-                            python src/main.py elite_single_ga $experiment_identifier $dimensions $objective_function $crossover $selection $tournament_percentage True None
+                            python src/main.py original_ma $experiment_identifier $dimensions $objective_function $crossover $selection $tournament_percentage True None
                             execution=$((execution + 1))
                             echo
                         done
                     else
                         echo "Executando iteração ($execution/$total_executions)."
                         echo "Seleção: $selection. Crossover: $crossover."
-                        python src/main.py elite_single_ga $experiment_identifier $dimensions $objective_function $crossover $selection None True None
+                        python src/main.py original_ma $experiment_identifier $dimensions $objective_function $crossover $selection None True None
                         execution=$((execution + 1))
                         echo
                     fi

@@ -9,12 +9,13 @@ ga_epochs: int = 5000
 
 ma_target: str = "min"
 ma_population_size: int = 50
-ma_crossover_rate: float = 0.9
+ma_crossover_rate: float = 0.85
 ma_mutation: str = "flip"
-ma_mutation_rate: float = 0.05
-ma_elitism_best_rate: float = 0.1
-ma_elitism_worst_rate: float = 0.3
-ma_epochs: int = 1000
+ma_mutation_rate: float = 0.15
+p_local: float = 0.5
+max_local_gens = 10
+bits_per_param = 4
+ma_epochs: int = 2000
 
 
 # CEC-2014 functions

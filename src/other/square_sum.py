@@ -1,6 +1,6 @@
 import numpy as np
 
-from elite_single_ga import ObjectiveFunction
+from objective_function import ObjectiveFunction
 
 
 class SquareSum(ObjectiveFunction):

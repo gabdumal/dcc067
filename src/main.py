@@ -5,8 +5,8 @@ from opfunu.cec_based.cec2005 import F62005, F92005
 from termcolor import colored
 
 # from original_ma import search
-from elite_single_ga import search as search_elite_single_ga
-from original_ma import search as search_original_ma
+from optimizers.elite_single_ga import search as search_elite_single_ga
+from optimizers.original_ma import search as search_original_ma
 from other.square_sum import SquareSum
 
 
@@ -33,7 +33,7 @@ def header():
 if len(sys.argv) < 9:
     print(
         colored(
-            "Usage: python main.py <optimizer> <experiment_identifier> <dimensions> <objective_function> <crossover> <selection> <tournament_percentage> <export_parameters> <seed> <p_local> <max_local_gens> <bits_per_param>",
+            "Usage: python main.py <optimizer> <experiment_identifier> <dimensions> <objective_function> <crossover> <selection> <tournament_percentage> <export_parameters> <seed>",
             "red",
         )
     )
@@ -137,36 +137,6 @@ if optimizer_arg == "elite_single_ga":
         seed,
     )
 else:
-    p_local_arg = sys.argv[10]
-    try:
-        p_local = float(p_local_arg)
-        if p_local <= 0 or p_local >= 1:
-            print(colored("p_local must be between 0 and 1 exclusive", "red"))
-            exit(1)
-    except ValueError:
-        print(colored("p_local must be a float", "red"))
-        exit(1)
-
-    max_local_gens_arg = sys.argv[11]
-    try:
-        max_local_gens = int(max_local_gens_arg)
-        if max_local_gens <= 0:
-            print(colored("max_local_gens must be a positive integer", "red"))
-            exit(1)
-    except ValueError:
-        print(colored("max_local_gens must be an integer", "red"))
-        exit(1)
-
-    bits_per_param_arg = sys.argv[12]
-    try:
-        bits_per_param = int(bits_per_param_arg)
-        if bits_per_param <= 0:
-            print(colored("bits_per_param must be a positive integer", "red"))
-            exit(1)
-    except ValueError:
-        print(colored("bits_per_param must be an integer", "red"))
-        exit(1)
-
     header()
     search_original_ma(
         experiment_identifier,
@@ -178,7 +148,4 @@ else:
         tournament_percentage,
         export_parameters,
         seed,
-        p_local,
-        max_local_gens,
-        bits_per_param,
     )

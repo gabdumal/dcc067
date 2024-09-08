@@ -1,32 +1,10 @@
 import os
-from abc import ABC, abstractmethod
 
-import numpy as np
-from mealpy import GA, FloatVar, Problem
+from mealpy import MA, FloatVar, Problem
 
 import constants
+from objective_function import ObjectiveFunction
 from util.printing_helper import print_header, print_parameters
-
-
-class ObjectiveFunction(ABC):
-    name: str
-    x_global: np.ndarray
-
-    @abstractmethod
-    def __init__(self, dimensions):
-        pass
-
-    @property
-    def lb(self) -> np.ndarray:
-        return self._lb
-
-    @property
-    def ub(self) -> np.ndarray:
-        return self._ub
-
-    @abstractmethod
-    def evaluate(self, solution):
-        pass
 
 
 def search(
@@ -43,7 +21,7 @@ def search(
     print_header(objective_function_class.name)
 
     # Problem definition
-    target = constants.ga_target
+    target = constants.ma_target
     objective_function = objective_function_class(dimensions)
 
     def objective_function_wrapper(solution):
@@ -53,16 +31,15 @@ def search(
     upper_bounds = objective_function.ub
 
     # Algorithm parameters
-    population_size: int = constants.ga_population_size
-    mutation = constants.ga_mutation
-    crossover_rate: float = constants.ga_crossover_rate
-    mutation_rate: float = constants.ga_mutation_rate
-    elitism_best_rate: float = constants.ga_elitism_best_rate
-    elitism_worst_rate: float = constants.ga_elitism_worst_rate
+    population_size: int = constants.ma_population_size
+    crossover_rate: float = constants.ma_crossover_rate
+    mutation_rate: float = constants.ma_mutation_rate
+    p_local: float = constants.p_local
+    max_local_gens: int = constants.max_local_gens
+    bits_per_param: int = constants.bits_per_param
 
     # Optimization parameters
-    population_size: int = constants.ga_population_size
-    epochs: int = constants.ga_epochs
+    epochs: int = constants.ma_epochs
 
     # Optimal solution
     optimal_solution = objective_function.x_global
@@ -78,17 +55,14 @@ def search(
         "ndim": dimensions,
     }
 
-    optimizer = GA.EliteSingleGA(
+    optimizer = MA.OriginalMA(
         epoch=epochs,
         pop_size=population_size,
         pc=crossover_rate,
         pm=mutation_rate,
-        selection=selection,
-        crossover=crossover,
-        mutation=mutation,
-        k_way=tournament_percentage,
-        elite_best=elitism_best_rate,
-        elite_worst=elitism_worst_rate,
+        p_local=p_local,
+        max_local_gens=max_local_gens,
+        bits_per_param=bits_per_param,
         strategy=0,
     )
 
@@ -111,16 +85,12 @@ def search(
         "Optimal fitness": optimal_fitness,
     }
     algorithm_parameters = {
-        "Selection": selection,
-        "Tournament percentage": selection == "tournament"
-        and tournament_percentage
-        or None,
         "Crossover": crossover,
         "Crossover rates": crossover_rate,
-        "Mutation": mutation,
         "Mutation rates": mutation_rate,
-        "Elitism best rate": elitism_best_rate,
-        "Elitism worst rate": elitism_worst_rate,
+        "Local search probability": p_local,
+        "Max local generations": max_local_gens,
+        "Bits per parameter": bits_per_param,
     }
     optimization_parameters = {
         "Population size": population_size,
@@ -142,10 +112,12 @@ def search(
     print()
     print_parameters(solution_output)
 
-    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    project_root = os.path.dirname(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    )
     output_file_directory_path = os.path.join(
         project_root,
-        f".results/{experiment_identifier}/EliteSingleGA/{dimensions}/{objective_function_identifier}/{crossover}/{selection}",
+        f".results/{experiment_identifier}/OriginalMA/{dimensions}/{objective_function_identifier}/{crossover}/{selection}",
     )
     if selection == "tournament":
         output_file_directory_path += f"/{tournament_percentage}"
@@ -154,6 +126,7 @@ def search(
         f"{seed}.txt",
     )
 
+    print(output_file_path)
     os.makedirs(output_file_directory_path, exist_ok=True)
     with open(output_file_path, "w+") as output_file:
         if export_parameters:

@@ -6,6 +6,7 @@ project_root = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 )
 
+possible_optimizers = ["OriginalMA", "EliteSingleGA"]
 possible_dimensions = [10, 20]
 objetive_functions = ["F12014", "F42014", "F52014", "F62005", "F92005"]
 crossovers = ["one_point", "arithmetic"]
@@ -13,43 +14,37 @@ selections = ["roulette", "tournament"]
 tournament_percentages = [0.1, 0.2, 0.3, 0.4, 0.5]
 
 
-def get_experiment_directory_path(
-    experiment_identifier: str,
-):
-    return os.path.join(project_root, f".results/{experiment_identifier}/EliteSingleGA")
+def get_experiment_directory_path(experiment_identifier: str):
+    return os.path.join(project_root, ".results", experiment_identifier)
 
 
-def get_results_directories_paths_for_roulette(
-    experiment_identifier: str,
-    dimensions: int,
-    objetive_function,
-    crossover,
-):
-    result_path = f"/{dimensions}/{objetive_function}/{crossover}/roulette"
-    return f"{get_experiment_directory_path(experiment_identifier)}{result_path}"
-
-
-def get_results_directories_paths_for_tournament(
-    experiment_identifier: str,
-    dimensions: int,
-    objetive_function,
-    crossover,
-    tournament_percentage,
-):
-    result_path = f"/{dimensions}/{objetive_function}/{crossover}/tournament/{tournament_percentage}"
-    return f"{get_experiment_directory_path(experiment_identifier)}{result_path}"
-
-
-def get_csv_header():
-    return "Objective function,Crossover,Selection,Tournament percentage,Seed,Algorithm solution,Algorithm fitness\n"
+def experiment_exists(experiment_directory_path: str):
+    return os.path.exists(get_experiment_directory_path(experiment_directory_path))
 
 
 def get_compilation_directory_path(experiment_identifier: str):
-    return os.path.join(project_root, f"results/{experiment_identifier}")
+    return os.path.join(project_root, "results", experiment_identifier)
 
 
-def write_csv_header(file):
-    file.write(get_csv_header())
+def write_csv_header(file, params: dict):
+    header = ""
+    for key in params.keys():
+        header += f"{key},"
+    header += "Seed,Algorithm solution,Algorithm fitness\n"
+    file.write(header)
+
+
+def write_csv_line(
+    file,
+    parameters: dict,
+    seed,
+    solution_output,
+):
+    line = ""
+    for key in parameters.keys():
+        line += f"{parameters[key]},"
+    line += f"{seed},{solution_output['Algorithm solution']},{solution_output['Algorithm fitness']}\n"
+    file.write(line)
 
 
 def get_solution_output(result_path):
@@ -66,92 +61,88 @@ def get_solution_output(result_path):
     return solution_output
 
 
-def write_csv_line(
-    file,
-    objetive_function,
-    crossover,
-    selection,
-    tournament_percentage,
-    seed,
-    solution_output,
-):
-    file.write(
-        f"{objetive_function},{crossover},{selection},{tournament_percentage},{seed},{solution_output['Algorithm solution']},{solution_output['Algorithm fitness']}\n"
-    )
+def process_files(file, results_path: str, parameters: dict):
+    for result in os.listdir(results_path):
+        seed = result.split(".")[0]
+        solution_output = get_solution_output(os.path.join(results_path, result))
+        write_csv_line(file, parameters, seed, solution_output)
+
+
+def write_results(file, dimension_experiment_path: str, parameters: dict):
+    write_csv_header(file, parameters)
+
+    for objective_function in objetive_functions:
+        objective_function_experiment_path = os.path.join(
+            dimension_experiment_path, objective_function
+        )
+        if not os.path.exists(objective_function_experiment_path):
+            continue
+        parameters["Objective function"] = objective_function
+
+        for crossover in crossovers:
+            crossover_experiment_path = os.path.join(
+                objective_function_experiment_path, crossover
+            )
+            if not os.path.exists(crossover_experiment_path):
+                continue
+            parameters["Crossover"] = crossover
+
+            for selection in selections:
+                selection_experiment_path = os.path.join(
+                    crossover_experiment_path, selection
+                )
+                if not os.path.exists(selection_experiment_path):
+                    continue
+                parameters["Selection"] = selection
+
+                if selection == "tournament":
+                    for tournament_percentage in tournament_percentages:
+                        tournament_experiment_path = os.path.join(
+                            selection_experiment_path, str(tournament_percentage)
+                        )
+                        if not os.path.exists(tournament_experiment_path):
+                            continue
+                        parameters["Tournament percentage"] = tournament_percentage
+
+                        process_files(file, tournament_experiment_path, parameters)
+                        continue
+
+                else:
+                    process_files(file, selection_experiment_path, parameters)
+                    continue
 
 
 def compile_results(experiment_identifier: str):
-    compilation_file_path = get_compilation_directory_path(experiment_identifier)
-    os.makedirs(compilation_file_path, exist_ok=True)
-    for dimensions in possible_dimensions:
-        experiment_directory_dimensions = os.path.join(
-            get_experiment_directory_path(experiment_identifier), str(dimensions)
-        )
-        if not os.path.exists(experiment_directory_dimensions):
+    experiment_path = get_experiment_directory_path(experiment_identifier)
+    compilation_path = get_compilation_directory_path(experiment_identifier)
+
+    parameters: dict = {
+        "Objective function": "",
+        "Crossover": "",
+        "Selection": "",
+        "Tournament percentage": "",
+    }
+
+    for optimizer in possible_optimizers:
+        optimizer_experiment_path = os.path.join(experiment_path, optimizer)
+        optimizer_path = os.path.join(experiment_path, optimizer)
+        if not os.path.exists(optimizer_path):
             continue
-        compilation_file_path = os.path.join(compilation_file_path, f"{dimensions}.csv")
-        with open(compilation_file_path, "w+") as file:
-            write_csv_header(file)
-            for objetive_function in objetive_functions:
-                experiment_directory_objetive_function = os.path.join(
-                    experiment_directory_dimensions, objetive_function
-                )
-                if not os.path.exists(experiment_directory_objetive_function):
-                    continue
-                for crossover in crossovers:
-                    for selection in selections:
-                        if selection == "roulette":
-                            result_path = get_results_directories_paths_for_roulette(
-                                experiment_identifier,
-                                dimensions,
-                                objetive_function,
-                                crossover,
-                            )
-                            for file_name in os.listdir(result_path):
-                                seed = file_name.split(".")[0]
-                                solution_output = get_solution_output(
-                                    os.path.join(result_path, file_name)
-                                )
-                                write_csv_line(
-                                    file,
-                                    objetive_function,
-                                    crossover,
-                                    selection,
-                                    None,
-                                    seed,
-                                    solution_output,
-                                )
-                        else:
-                            for tournament_percentage in tournament_percentages:
-                                result_path = (
-                                    get_results_directories_paths_for_tournament(
-                                        experiment_identifier,
-                                        dimensions,
-                                        objetive_function,
-                                        crossover,
-                                        tournament_percentage,
-                                    )
-                                )
-                                for file_name in os.listdir(result_path):
-                                    seed = file_name.split(".")[0]
-                                    solution_output = get_solution_output(
-                                        os.path.join(result_path, file_name)
-                                    )
-                                    write_csv_line(
-                                        file,
-                                        objetive_function,
-                                        crossover,
-                                        selection,
-                                        tournament_percentage,
-                                        seed,
-                                        solution_output,
-                                    )
+        compilation_path = os.path.join(compilation_path, optimizer)
 
+        for dimensions in possible_dimensions:
+            dimension_experiment_path = os.path.join(
+                optimizer_experiment_path, str(dimensions)
+            )
+            dimensions_path = os.path.join(optimizer_path, str(dimensions))
+            if not os.path.exists(dimensions_path):
+                continue
+            compilation_path = os.path.join(compilation_path, str(dimensions))
 
-def experiment_exists(experiment_identifier: str):
-    return os.path.exists(
-        os.path.join(project_root, f".results/{experiment_identifier}")
-    )
+            os.makedirs(compilation_path, exist_ok=True)
+            compilation_file_path = os.path.join(compilation_path, "results.csv")
+            with open(compilation_file_path, "w+") as file:
+                write_results(file, dimension_experiment_path, parameters)
 
 
 def run():
