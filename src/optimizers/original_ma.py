@@ -126,8 +126,11 @@ def search(
         f"{seed}.txt",
     )
 
-    print(output_file_path)
     os.makedirs(output_file_directory_path, exist_ok=True)
+    
+    optimizer.history.save_global_best_fitness_chart(filename= "gbfc")
+    optimizer.history.save_local_best_fitness_chart(filename= "lbfc")
+
     with open(output_file_path, "w+") as output_file:
         if export_parameters:
             print_parameters(objective_function_description, output_file.write, False)

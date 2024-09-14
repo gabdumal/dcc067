@@ -163,3 +163,7 @@ cython_debug/
 
 .results
 results/part_2/*/*/*/*.ods
+src/gbfc.pdf
+src/gbfc.png
+src/lbfc.pdf
+src/lbfc.png
