@@ -8,6 +8,7 @@ from termcolor import colored
 from optimizers.elite_single_ga import search as search_elite_single_ga
 from optimizers.original_ma import search as search_original_ma
 from other.square_sum import SquareSum
+from other.threebar_truss_design import ThreeBarTruss
 
 
 def header():
@@ -21,12 +22,12 @@ def header():
     )
 
     print(colored("Grupo 1:", attrs=["bold"]), end=" ")
-    print(
-        colored(
-            "Avaliar o uso de seleção por roleta e por torneio (variações de k); avaliar o uso do crossover de um ponto e aritmético",
-            "cyan",
-        )
-    )
+    # print(
+    #     colored(
+    #         "Avaliar o uso de seleção por roleta e por torneio (variações de k); avaliar o uso do crossover de um ponto e aritmético",
+    #         "cyan",
+    #     )
+    # )
     print()
 
 
@@ -48,10 +49,10 @@ try:
     if dimensions <= 0:
         print(colored("Dimensions must be a positive integer", "red"))
         exit(1)
-    if dimensions in [10, 20, 30, 50, 100]:
+    if dimensions in [2, 10, 20, 30, 50, 100]:
         pass
     else:
-        print(colored("Dimensions must be 10, 20, 30, 50 or 100", "red"))
+        print(colored("Dimensions must be 2, 10, 20, 30, 50 or 100", "red"))
         exit(1)
 except ValueError:
     print(colored("Dimensions must be an integer", "red"))
@@ -60,6 +61,8 @@ except ValueError:
 objective_function_arg = sys.argv[4]
 if objective_function_arg == "SquareSum":
     objective_function = SquareSum
+elif objective_function_arg == "ThreeBarTruss":
+    objective_function = ThreeBarTruss
 elif objective_function_arg == "F62005":
     objective_function = F62005
 elif objective_function_arg == "F92005":
