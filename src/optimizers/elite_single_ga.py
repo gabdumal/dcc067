@@ -136,9 +136,16 @@ def search(
 
     os.makedirs(output_file_directory_path, exist_ok=True)
 
-    optimizer.history.save_global_best_fitness_chart(filename= "gbfc")
-    optimizer.history.save_local_best_fitness_chart(filename= "lbfc")
-    
+    global_best_chart_path = os.path.join(
+        output_file_directory_path, f"../charts/seed-{seed}/gbfc"
+    )
+    local_best_chart_path = os.path.join(
+        output_file_directory_path, f"../charts/seed-{seed}/lbfc"
+    )
+
+    optimizer.history.save_global_best_fitness_chart(filename=global_best_chart_path)
+    optimizer.history.save_local_best_fitness_chart(filename=local_best_chart_path)
+
     with open(output_file_path, "w+") as output_file:
         if export_parameters:
             print_parameters(objective_function_description, output_file.write, False)
