@@ -136,7 +136,7 @@ if optimizer_arg == "elite_single_ga":
         export_parameters,
         seed,
     )
-else:
+elif optimizer_arg == "original_ma":
     header()
     search_original_ma(
         experiment_identifier,
@@ -149,3 +149,6 @@ else:
         export_parameters,
         seed,
     )
+else:
+    print(colored("Invalid name for optimizer", "red"))
+    exit(1)
