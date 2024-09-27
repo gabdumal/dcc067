@@ -1,0 +1,24 @@
+Objective function: Three-Bar Truss Design
+
+Dimensions: 2
+Lower bounds: [0., 0.]
+Upper bounds: [1., 1.]
+Optimal solution: [0., 0.]
+Optimal fitness: 1200.0
+
+Selection: tournament
+Tournament percentage: 0.2
+Crossover: arithmetic
+Crossover rates: 0.9
+Mutation: flip
+Mutation rates: 0.05
+Elitism best rate: 0.1
+Elitism worst rate: 0.3
+
+Population size: 50
+Epochs: 1500
+
+Seed: 1415173070
+Algorithm solution: [0.7932548908101021, 0.39567576849677355]
+Algorithm fitness: 263.9339418501644
+

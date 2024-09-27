@@ -1,0 +1,11 @@
+Objective function,Crossover,Selection,Tournament percentage,Seed,Algorithm solution,Algorithm fitness
+ThreeBarTruss,one_point,tournament,0.2,1904143753,[0.8; 0.4],266.2741699796952
+ThreeBarTruss,one_point,tournament,0.2,4256472454,[0.8; 0.4],266.2741699796952
+ThreeBarTruss,one_point,tournament,0.2,2941192607,[0.7984365924495006; 0.39768157660366443],265.6001292077751
+ThreeBarTruss,one_point,tournament,0.2,2843617871,[0.8; 0.4],266.2741699796952
+ThreeBarTruss,one_point,tournament,0.2,1990484258,[0.8; 0.4],266.2741699796952
+ThreeBarTruss,one_point,tournament,0.2,2194739417,[0.8; 0.4],266.2741699796952
+ThreeBarTruss,one_point,tournament,0.2,770224707,[0.8; 0.4],266.2741699796952
+ThreeBarTruss,one_point,tournament,0.2,583703409,[0.8; 0.4],266.2741699796952
+ThreeBarTruss,one_point,tournament,0.2,2820824513,[0.8; 0.4],266.2741699796952
+ThreeBarTruss,one_point,tournament,0.2,848630862,[0.8; 0.4],266.2741699796952

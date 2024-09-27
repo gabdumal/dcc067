@@ -1,0 +1,22 @@
+Objective function: Three-Bar Truss Design
+
+Dimensions: 2
+Lower bounds: [0., 0.]
+Upper bounds: [1., 1.]
+Optimal solution: [0., 0.]
+Optimal fitness: 4800.0
+
+Crossover: one_point
+Crossover rates: 0.85
+Mutation rates: 0.15
+Local search probability: 0.5
+Max local generations: 10
+Bits per parameter: 4
+
+Population size: 50
+Epochs: 100
+
+Seed: 3432036922
+Algorithm solution: [0.8, 0.4]
+Algorithm fitness: 266.2741699796952
+
