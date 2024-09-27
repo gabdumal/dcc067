@@ -3,12 +3,12 @@
 
 Este trabalho é requisito parcial para aprovação na disciplina \gls{disciplina}, do \gls{dcc} da \gls{ufjf}.
 
-Seu objetivo é analisar o desempenho de algoritmos genéticos ao resolver problemas de otimização com restrições, especificamente o problema de projeto da treliça de três barras e como a função de penalização impacta a obtenção de soluções viáveis e de boa qualidade.
+Seu objetivo é analisar o desempenho de algoritmos genéticos ao resolver problemas de otimização com restrições, especificamente o \gls{problem} e como a função de penalização impacta a obtenção de soluções viáveis e de boa qualidade.
 
 Dessa forma, o escopo do trabalho envolve a aplicação do algoritmo genético simples com elitismo e do algoritmo memético a este problema com restrições. O algoritmo memético é uma variação do genético que utiliza um resolvedor local para melhorar a busca em determinadas regiões da função objetivo.
 
 Para a realização dos experimentos, foram feitas modificações ao projeto utilizado em etapas anteriores deste mesmo trabalho. Diferente de abordagens anteriores, a função objetivo e as restrições foram definidas manualmente em uma classe, sem a importação de funções de pacotes externos.
-Para os algoritmos foram utilizadas as classes \gls{esga} e \todo{classe do algoritmo memetico}da biblioteca \gls{mealpy}, que contém implementações de diversos algoritmos evolutivos~\cite{mealpy_paper}.
+Para os algoritmos foram utilizadas as classes \gls{esga} e \gls{oma} da biblioteca \gls{mealpy}, que contém implementações de diversos algoritmos evolutivos~\cite{mealpy_paper}, sendo o primeiro um algoritmo genético com elitismo e o segundo um algoritmo memético.
 
 
 O restante deste trabalho está organizado da seguinte forma: a \autoref{sec:metodologia} descreve a metodologia utilizada para a realização dos experimentos; a \autoref{sec:resultados} apresenta os resultados obtidos; e a \autoref{sec:conclusao} apresenta as conclusões do trabalho.

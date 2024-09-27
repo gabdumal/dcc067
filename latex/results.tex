@@ -7,59 +7,36 @@ Nesta seção, são apresentados os resultados obtidos a partir da execução do
 \subsection{Análise dos Resultados}%
 
 A partir dos resultados obtidos, é possível analisar o desempenho dos algoritmos em cada um dos problemas propostos.
-Para isso, com base nos valores de \gls{fitness} das execuções, foram calculadas as médias, os desvios padrão --- representados por \( \sigma \) --- e a discrepância da solução encontrada em relação à solução ótima conhecida, além de listar o melhor valor dentre as 10 execuções de cada variante.
-A \autoref{tab:fitness_10} apresenta os resultados obtidos.
+Foi considerado o valor de \gls{fitness} do ótimo global ideal como 263.895843.
 
+Com base nos valores de \gls{fitness} das execuções, foram calculados:
 
-\todo{colocar os resultados}
-\begin{table}[!ht]
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{llllrrrr}
-            \bottomrule
-            \textbf{Obj.\ func.}                       &
-            \textbf{Crossover}                         &
-            \textbf{Selection}                         &
-            \textbf{\( \boldsymbol{K} \)}              &
-            \textbf{Best fitness}                      &
-            \textbf{Average fitness}                   &
-            \textbf{Fitness \( \boldsymbol{\sigma} \)} &
-            \textbf{Discrepancy}                                                                                                                      \\ \midrule
-            F12014                                     & one\_point & roulette   & None & 5,427,918.34 & 8,721,732.84  & 2,010,993.99 & 8,721,632.84  \\
-            F12014                                     & one\_point & tournament & 0.1  & 1,984,810.71 & 5,039,684.36  & 2,413,869.42 & 5,039,584.36  \\
-            F12014                                     & one\_point & tournament & 0.2  & 626,253.43   & 2,977,922.47  & 1,469,234.28 & 2,977,822.47  \\
-            F12014                                     & one\_point & tournament & 0.3  & 251,279.86   & 1,967,444.84  & 976,822.48   & 1,967,344.84  \\
-            F12014                                     & one\_point & tournament & 0.4  & 136,152.15   & 778,614.73    & 474,529.84   & 778,514.73    \\
-            F12014                                     & one\_point & tournament & 0.5  & 125,213.30   & 300,636.40    & 134,755.61   & 300,536.40    \\
-            F12014                                     & arithmetic & roulette   & None & 9,355,133.39 & 15,026,194.68 & 2,507,612.16 & 15,026,094.68 \\
-            F12014                                     & arithmetic & tournament & 0.1  & 4,044,396.31 & 5,881,057.14  & 1,269,891.90 & 5,880,957.14  \\
-            F12014                                     & arithmetic & tournament & 0.2  & 332,668.03   & 839,066.42    & 342,200.41   & 838,966.42    \\
-            F12014                                     & arithmetic & tournament & 0.3  & 179,742.67   & 345,012.16    & 141,971.91   & 344,912.16    \\
-            F12014                                     & arithmetic & tournament & 0.4  & 98,441.27    & 181,654.00    & 79,546.79    & 181,554.00    \\
-            F12014                                     & arithmetic & tournament & 0.5  & 60,784.82    & 143,231.77    & 60,174.04    & 143,131.77    \\
-            F52014                                     & one\_point & roulette   & None & 520.15       & 520.21        & 0.03         & 20.21         \\
-            F52014                                     & one\_point & tournament & 0.1  & 519.22       & 520.10        & 0.31         & 20.10         \\
-            F52014                                     & one\_point & tournament & 0.2  & 519.63       & 520.03        & 0.14         & 20.03         \\
-            F52014                                     & one\_point & tournament & 0.3  & 510.25       & 518.30        & 3.39         & 18.30         \\
-            F52014                                     & one\_point & tournament & 0.4  & 507.63       & 516.73        & 5.17         & 16.73         \\
-            F52014                                     & one\_point & tournament & 0.5  & 519.48       & 519.83        & 0.22         & 19.83         \\
-            F52014                                     & arithmetic & roulette   & None & 520.01       & 520.23        & 0.10         & 20.23         \\
-            F52014                                     & arithmetic & tournament & 0.1  & 518.99       & 520.13        & 0.41         & 20.13         \\
-            F52014                                     & arithmetic & tournament & 0.2  & 508.05       & 512.63        & 5.02         & 12.63         \\
-            F52014                                     & arithmetic & tournament & 0.3  & 506.66       & 507.89        & 0.86         & 7.89          \\
-            F52014                                     & arithmetic & tournament & 0.4  & 506.47       & 508.79        & 3.83         & 8.79          \\
-            F52014                                     & arithmetic & tournament & 0.5  & 506.51       & 508.78        & 4.05         & 8.78          \\
-            \toprule
-        \end{tabular}%
-    }
-    \caption{Resultados obtidos para os problemas \glsentryname{f1} e \glsentryname{f5} em 10 dimensões.
-    }%
-    \label{tab:fitness_10}
-\end{table}
-
+\begin{symbols}
+    \item[\( \Delta \)] a discrepância em relação ao ótimo global ideal;
+    \item[\( \sigma^{2} \)] a variância dos valores de \gls{fitness} obtidos;
+    \item[\( \sigma \)] o desvio padrão dos valores de \gls{fitness} obtidos.
+\end{symbols}
 
 O experimento consistiu em executar cada algoritmo 10 vezes, variando os pesos atribuídos às penalizações por violação das restrições. Inicialmente, testaram-se pesos de 100, 200, 400 e 800, com o valor dobrando a cada execução. Posteriormente, o peso foi reduzido gradualmente, sendo testados 50, 25, 12,5 e, por fim, 0.
 
-Em todas as execuções com pesos iguais ou superiores a 100, o algoritmo genético simples convergiu para soluções muito próximas do ótimo. Mesmo com penalizações elevadas, como 800, a convergência se manteve consistente. Entretanto, com esses pesos mais altos, o algoritmo exigiu um número maior de iterações para alcançar a solução final, embora a qualidade desta tenha permanecido satisfatória.
+As tabelas~\ref{tab:resultados-genetico} e~\ref{tab:resultados-memetico} apresentam, para os otimizadores \gls{esga} e \gls{oma}, respectivamente, os resultados obtidos.
+Elencam-se os valores de \gls{fitness} e de discrepância da melhor solução e da média das 10 execuções realizadas para cada peso de penalização, além de os valores de variância e desvio padrão entre as soluções encontradas.
+Os dados completos do experimento com o algoritmo genético%
+\footnote{%
+    Resultados do experimento para o algoritmo genético. Disponível em: \url{https://docs.google.com/spreadsheets/d/1589Xh2bLunegQypvfnBg_3csuZElcqJtsFiOOzEYmz8/edit?usp=sharing}.
+}
+e com o memético%
+\footnote{%
+    Resultados do experimento para o algoritmo memético. Disponível em: \url{https://docs.google.com/spreadsheets/d/1d157cRAJqgtAQ1KfIHSeW07LFzINioJR8bucLpOU43w/edit?usp=drive_link}.
+}
+estão disponíveis on-line.
+
+\input{tables/genetic_results.tex}
+\input{tables/memetic_results.tex}
+
+Em todas as execuções com pesos iguais ou superiores a 100, o algoritmo genético simples convergiu para soluções muito próximas do ótimo.
+Mesmo com penalizações elevadas, como 800, a convergência se manteve consistente.
+Entretanto, com esses pesos mais altos, o algoritmo exigiu um número maior de iterações para alcançar a solução final, embora a qualidade dessa tenha permanecido satisfatória.
 
 \todo{colocar o conteúdo da pasta iteracoesXpeso}
 
@@ -69,7 +46,6 @@ O algoritmo memético apresentou um desempenho semelhante, atingindo soluções 
 Por outro lado, ao utilizar pesos de penalização mais baixos (50 ou inferiores), ambos os algoritmos começaram a gerar soluções inviáveis. À medida que o peso diminuía, as soluções aparentavam melhorar em termos de qualidade, mas violavam cada vez mais as restrições, resultando em soluções estruturalmente inviáveis.
 
 \todo{colocar as imagens da pasta solucoesInviaveis}
-
 
 
 % \begin{table}[!ht]

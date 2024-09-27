@@ -7,7 +7,7 @@ Para a condução deste trabalho, foi realizada uma pesquisa bibliográfica sobr
 
 Com esse aprofundamento, compreendemos que o problema envolve a minimização da área da seção transversal das três barras que compõem uma treliça. Para evitar que o problema se torne multiobjetivo, a avaliação é feita considerando um peso fixo hipotético posicionado sobre a treliça, de forma que o único objetivo é minimizar o peso total da estrutura, mantendo sua capacidade de suportar tal peso.
 
-Assim, seções transversais menores resultam em um peso menor e, consequentemente, em uma solução de melhor qualidade. Embora à primeira vista o problema pareça requerer três variáveis (uma para cada barra da treliça), a simetria estrutural exige que as barras diagonais tenham seções iguais, evitando tendências de giro que poderiam comprometer a integridade da estrutura. 
+Assim, seções transversais menores resultam em um peso menor e, consequentemente, em uma solução de melhor qualidade. Embora à primeira vista o problema pareça requerer três variáveis (uma para cada barra da treliça), a simetria estrutural exige que as barras diagonais tenham seções iguais, evitando tendências de giro que poderiam comprometer a integridade da estrutura.
 
 Dessa forma, as barras 1 e 3 devem ter a mesma área de seção transversal, reduzindo o problema para duas variáveis: \(x_1\) e \(x_2\), onde \(x_1\) representa as seções das barras diagonais e \(x_2\) a seção da barra horizontal.
 
@@ -24,9 +24,9 @@ A função objetivo pode ser expressa como:
 
 \begin{gather}
     \begin{align}
-      \begin{split}
-        y = \left( 2 \sqrt{2} \cdot x_1 + x_2 \right) \cdot 100
-      \end{split}
+        \begin{split}
+            y = \left( 2 \sqrt{2} \cdot x_1 + x_2 \right) \cdot 100
+        \end{split}
     \end{align}
 \end{gather}
 
@@ -40,26 +40,26 @@ O problema está sujeito a restrições de tensão, deflexão e flambagem
 As restrições são expressas pelas seguintes equações:
 
 \begin{gather}
-      \begin{subequations}
+    \begin{subequations}
         \begin{align}
-          \begin{split}
-            g_1 = \frac{2 \left( \sqrt{2} \cdot x_1 + x_2 \right)}{\sqrt{2} \cdot x_1^2 + 2 \cdot x_1 \cdot x_2} - 2
-          \end{split}
-          \\
-          \begin{split}
-            g_2 = \frac{2 \cdot x_2}{\sqrt{2} \cdot x_1^2 + 2 \cdot x_1 \cdot x_2} - 2
-          \end{split}
-          \\
-          \begin{split}
-            g_3 = \frac{2}{x_1 + \sqrt{2} \cdot x_2} - 2
-          \end{split}
+            \begin{split}
+                g_1 = \frac{2 \left( \sqrt{2} \cdot x_1 + x_2 \right)}{\sqrt{2} \cdot x_1^2 + 2 \cdot x_1 \cdot x_2} - 2
+            \end{split}
+            \\
+            \begin{split}
+                g_2 = \frac{2 \cdot x_2}{\sqrt{2} \cdot x_1^2 + 2 \cdot x_1 \cdot x_2} - 2
+            \end{split}
+            \\
+            \begin{split}
+                g_3 = \frac{2}{x_1 + \sqrt{2} \cdot x_2} - 2
+            \end{split}
         \end{align}
-      \end{subequations}
+    \end{subequations}
 \end{gather}
 
 \subsection{Penalização}
 
-Caso alguma das restrições \(g_1\), \(g_2\) ou \(g_3\) seja positiva, a restrição será violada, indicando que a solução é estruturalmente inviável. Para esses casos, são estabelecidos dois valores de penalização: \(\phi\) e \(\text{viol}\), que são adicionados à função objetivo. Esses valores positivos prejudicam a qualidade da solução, dado que se trata de uma função de minimização. 
+Caso alguma das restrições \(g_1\), \(g_2\) ou \(g_3\) seja positiva, a restrição será violada, indicando que a solução é estruturalmente inviável. Para esses casos, são estabelecidos dois valores de penalização: \(\phi\) e \(\text{viol}\), que são adicionados à função objetivo. Esses valores positivos prejudicam a qualidade da solução, dado que se trata de uma função de minimização.
 
 O valor \(\phi\) é a soma dos valores que violam as restrições, enquanto \(\text{viol}\) representa o número de restrições violadas.
 
@@ -73,7 +73,7 @@ O valor \(\phi\) é a soma dos valores que violam as restrições, enquanto \(\t
 
 Onde \(g_i\) são as restrições \(g_1\), \(g_2\) e \(g_3\).
 
-\todo{Adicionar subseção de segundo nível para a função objetivo penalizada}
+\subsubsection{Função Objetivo Penalizada}
 
 A função objetivo penalizada é dada por:
 
@@ -93,42 +93,62 @@ A seguir, apresentamos as constantes e parâmetros selecionados para a realizaç
 
 \subsubsection{Constantes}
 
-As constantes utilizadas nos experimentos são listadas na \autoref{tab:constantes}.
+As constantes utilizadas em ambos os experimentos estão listadas na \autoref{tab:constantes-comuns}.
 
 \begin{table}[htb]
     \center%
     \begin{tabular}{l l}
         \bottomrule
-        \textbf{Constante}    & \textbf{Valor} \\ \midrule
-        Target               & Min            \\ \midrule
+        \textbf{Constante}   & \textbf{Valor} \\ \midrule
+        Direção              & Min            \\ \midrule
         Tamanho da população & 50             \\ \midrule
-        Taxa de crossover    & 90\%           \\ \midrule
+        Tipo de seleção      & Torneio        \\ \midrule
+        População no torneio & 20\%           \\
+        \midrule
         Mutação              & Flip           \\ \midrule
-        Taxa de mutação      & 5\%            \\ \midrule
-        Elitismo (melhores)  & 10\%           \\ \midrule
-        Elitismo (piores)    & 30\%           \\ \midrule
-        Gerações             & 1500           \\ \toprule
     \end{tabular}
-    \caption{Constantes utilizadas nos experimentos.}%
-    \label{tab:constantes}
+    \caption{Constantes utilizadas am ambos os experimentos.}%
+    \label{tab:constantes-comuns}
 \end{table}
 
-O algoritmo memético, por ser uma extensão do algoritmo genético, utiliza os mesmos parâmetros da \autoref{tab:constantes}, variando apenas o tipo de crossover e o número de gerações. Os parâmetros específicos do algoritmo memético estão listados na \autoref{tab:memetico}.
+As constantes utilizadas no experimento do algoritmo genético estão listadas na \autoref{tab:constantes-genetico}.
+Destacam-se como específicas o tamanho da população a ser mantida entre duas gerações, tanto considerando os melhores indivíduos e os piores.
 
 \begin{table}[htb]
     \center%
     \begin{tabular}{l l}
         \bottomrule
-        \textbf{Constante}    & \textbf{Valor} \\ \midrule
-        Taxa de exploração local & 0.5          \\ \midrule
-        Máx. gerações locais   & 10            \\ \midrule
-        Bits por parâmetro     & 4             \\ \midrule
-        Tipo de crossover      & Um ponto      \\ \midrule
-        Gerações               & 100           \\ \toprule
+        \textbf{Constante}  & \textbf{Valor} \\ \midrule
+        Tipo de crossover   & Aritmético     \\ \midrule
+        Taxa de crossover   & 90\%           \\ \midrule
+        Taxa de mutação     & 5\%            \\ \midrule
+        Elitismo (melhores) & 10\%           \\ \midrule
+        Elitismo (piores)   & 30\%           \\ \midrule
+        Gerações            & 1500           \\ \toprule
     \end{tabular}
-    \caption{Parâmetros adicionais do algoritmo memético.}%
-    \label{tab:memetico}
+    \caption{Constantes utilizadas no experimento com o \gls{esga}.}%
+    \label{tab:constantes-genetico}
 \end{table}
+
+\begin{table}[htb]
+    \center%
+    \begin{tabular}{l l}
+        \bottomrule
+        \textbf{Constante}       & \textbf{Valor} \\ \midrule
+        Tipo de crossover        & Um ponto       \\ \midrule
+        Taxa de crossover        & 85\%           \\ \midrule
+        Taxa de mutação          & 15\%           \\ \midrule
+        Taxa de exploração local & 0.5            \\ \midrule
+        Máx. gerações locais     & 10             \\ \midrule
+        Bits por parâmetro       & 4              \\ \midrule
+        Gerações                 & 100            \\ \toprule
+    \end{tabular}
+    \caption{Constantes utilizadas no experimento com o \gls{oma}.}%
+    \label{tab:constantes-memetico}
+\end{table}
+
+O algoritmo memético, por ser uma extensão do algoritmo genético, utiliza parâmetros similares, como mostrado na \autoref{tab:constantes-memetico}, variando apenas o tipo e a taxa de \gls{crossover}, a taxa de mutação e o número de gerações, além dos parâmetros específicos.
+São eles a taxa de exploração utilizada pelo resolvedor local integrado, o número máximo de gerações locais e o número de bits por parâmetro, que determina a precisão da codificação.
 
 As variáveis de decisão, \(x_1\) e \(x_2\), que representam as áreas das seções transversais das barras, foram normalizadas para o intervalo de 0 a 1, garantindo consistência na avaliação dos resultados. A população inicial é gerada aleatoriamente dentro desse intervalo, e seu tamanho permanece fixo em 50 indivíduos ao longo de todas as gerações.
 
@@ -136,6 +156,6 @@ O operador de \gls{crossover} é aplicado com uma taxa de 90\%. A mutação, com
 
 \subsection{Parâmetros e Variáveis}
 
-Os experimentos foram conduzidos utilizando os parâmetros que apresentaram os melhores resultados nas etapas anteriores deste trabalho. Assim, a única parametrização dinâmica do experimento foram os pesos atribuídos a cada tipo de penalização.
+Os experimentos foram conduzidos utilizando os parâmetros que apresentaram os melhores resultados nas etapas anteriores deste trabalho. Assim, a única parametrização dinâmica do experimento, isto é, o parâmetro que varia entre as execuções, foram os pesos atribuídos a cada tipo de penalização.
 
-Para garantir a robustez dos resultados, os experimentos foram repetidos 10 vezes para cada algoritmo.
+Para garantir a robustez dos resultados, os experimentos foram repetidos 10 vezes para cada algoritmo, utilizando \textit{seeds} diferentes para a geração de números aleatórios.
