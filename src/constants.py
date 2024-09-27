@@ -5,7 +5,7 @@ ga_mutation: str = "flip"
 ga_mutation_rate: float = 0.05
 ga_elitism_best_rate: float = 0.1
 ga_elitism_worst_rate: float = 0.3
-ga_epochs: int = 5000
+ga_epochs: int = 1500
 
 ma_target: str = "min"
 ma_population_size: int = 50
@@ -15,7 +15,7 @@ ma_mutation_rate: float = 0.15
 p_local: float = 0.5
 max_local_gens = 10
 bits_per_param = 4
-ma_epochs: int = 2000
+ma_epochs: int = 100
 
 
 # CEC-2014 functions
