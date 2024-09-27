@@ -3,15 +3,12 @@
 
 Este trabalho é requisito parcial para aprovação na disciplina \gls{disciplina}, do \gls{dcc} da \gls{ufjf}.
 
-Seu objetivo é analisar a performance de \glspl{ga} ao encontrar soluções para problemas de otimização, em particular, a convergência e a qualidade das soluções encontradas.
+Seu objetivo é analisar o desempenho de algoritmos genéticos ao resolver problemas de otimização com restrições, especificamente o problema de projeto da treliça de três barras e como a função de penalização impacta a obtenção de soluções viáveis e de boa qualidade.
 
-Nesse sentido, o escopo do trabalho é avaliar
-o uso de seleção por roleta e por torneio com variações de \(K\) --- a proporção de indivíduos selecionados para o torneio ---, além de avaliar o uso de \gls{crossover} de um ponto e aritmético.
+Dessa forma, o escopo do trabalho envolve a aplicação do algoritmo genético simples com elitismo e do algoritmo memético a este problema com restrições. O algoritmo memético é uma variação do genético que utiliza um resolvedor local para melhorar a busca em determinadas regiões da função objetivo.
 
-Para tal, foi desenvolvido um projeto na linguagem Python, a fim de executar experimentos computacionais.
-Como referência, foram utilizados classes de funções objetivo do \gls{cec14}, disponibilizadas pelo pacote \gls{opfunu}, que contém funções de benchmark para otimização~\cite{opfunu_paper}.
-Além disso, foi utilizada a classe \gls{esga} da biblioteca \gls{mealpy}, que contém implementações de diversos algoritmos evolutivos~\cite{mealpy_paper}.
+Para a realização dos experimentos, foram feitas modificações ao projeto utilizado em etapas anteriores deste mesmo trabalho. Diferente de abordagens anteriores, a função objetivo e as restrições foram definidas manualmente em uma classe, sem a importação de funções de pacotes externos.
+Para os algoritmos foram utilizadas as classes \gls{esga} e \todo{classe do algoritmo memetico}da biblioteca \gls{mealpy}, que contém implementações de diversos algoritmos evolutivos~\cite{mealpy_paper}.
 
-Com o código em operação, decidiu-se explorar as funções disponibilizadas pelo pacote, com o objetivo de selecionar uma função convexa e outra não convexa, que serviram como objetos de estudo no experimento.
 
 O restante deste trabalho está organizado da seguinte forma: a \autoref{sec:metodologia} descreve a metodologia utilizada para a realização dos experimentos; a \autoref{sec:resultados} apresenta os resultados obtidos; e a \autoref{sec:conclusao} apresenta as conclusões do trabalho.

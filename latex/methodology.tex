@@ -1,109 +1,141 @@
 \section{Metodologia}%
 \label{sec:metodologia}
 
-A fim de conduzir este trabalho, foi realizada uma pesquisa bibliográfica sobre \glspl{ga} e suas variações, o que possibilitou a compreensão do funcionamento desses algoritmos e a identificação de aspectos relevantes para a análise de sua performance.
-Assim, foram escolhidas duas funções de benchmark dentre as disponíveis no pacote \gls{opfunu}~\cite{opfunu_software}, uma convexa e outra não convexa.
+Para a condução deste trabalho, foi realizada uma pesquisa bibliográfica sobre o problema, incluindo a natureza das restrições e os limites superiores e inferiores possíveis para suas variáveis.
 
-\subsection{Operadores}
+\subsection{Função Objetivo}
 
-O objetivo central desta pesquisa é avaliar diferentes operadores de seleção e \gls{crossover}, com a intenção de entender como essas variações impactam os resultados dos experimentos.
-Para isso, foram escolhidos os seguintes operadores de seleção: roleta e torneio --- o qual foi testado com diferentes valores de \(K\), que representa a proporção de indivíduos selecionados para o torneio dentre a totalidade da população.
-Além disso, foram escolhidos os operadores de \gls{crossover} de um ponto e aritmético.
+Com esse aprofundamento, compreendemos que o problema envolve a minimização da área da seção transversal das três barras que compõem uma treliça. Para evitar que o problema se torne multiobjetivo, a avaliação é feita considerando um peso fixo hipotético posicionado sobre a treliça, de forma que o único objetivo é minimizar o peso total da estrutura, mantendo sua capacidade de suportar tal peso.
 
-Embora inicialmente o escopo do trabalho não contemplasse a introdução de mutações, foi necessário incluir alguma chance de mutação para evitar problemas de convergência prematura das soluções, o que poderia limitar significativamente a qualidade dos resultados obtidos.
+Assim, seções transversais menores resultam em um peso menor e, consequentemente, em uma solução de melhor qualidade. Embora à primeira vista o problema pareça requerer três variáveis (uma para cada barra da treliça), a simetria estrutural exige que as barras diagonais tenham seções iguais, evitando tendências de giro que poderiam comprometer a integridade da estrutura. 
 
-Assim, foram realizados testes preliminares com diferentes métodos de mutação disponíveis no pacote \gls{mealpy}~\cite{mealpy_software}.
-Os resultados desses revelaram que algumas técnicas, como \texttt{scramble} e \texttt{inverted}, eram incompatíveis com certas combinações de operadores --- como a combinação de seleção por roleta com crossover de um ponto.
+Dessa forma, as barras 1 e 3 devem ter a mesma área de seção transversal, reduzindo o problema para duas variáveis: \(x_1\) e \(x_2\), onde \(x_1\) representa as seções das barras diagonais e \(x_2\) a seção da barra horizontal.
 
-Em contraste, a mutação do tipo \texttt{flip} mostrou-se bastante razoável em termos de tempo de execução e resultados obtidos, independentemente da combinação de operadores utilizada (roleta, torneio, crossover de um ponto e crossover aritmético).
-Dessa forma, foi selecionada a mutação \texttt{flip} em todas as execuções do experimento.
+\todo{Inserir figura ilustrativa do problema}
 
-\subsection{Funções objetivo}
+% \begin{figure}[!ht]%
+%     \centering
+%     \includegraphics[scale=0.5]{img/f1.png}
+%     \caption{Representação tridimensional da função \glsentryfull{f1} em duas dimensões. Fonte: \citeonline{cec2014}.}%
+%     \label{fig:f1}
+% \end{figure}
 
-Ademais, foi necessário ultrapassar os limites do escopo originalmente estabelecido também no que se refere ao número de dimensões avaliadas.
-O objetivo inicial era analisar as funções em 2 e 10 dimensões, o que não constitui uma limitação da biblioteca \gls{mealpy}.
-Entretanto, os arquivos que baseiam o pacote \gls{opfunu} apresentam as funções objetivo disponíveis em apenas cinco configurações: 10, 20, 30, 50 e 100 dimensões.
+A função objetivo pode ser expressa como:
 
-Levando em conta que se esperava que as execuções para duas dimensões permitissem a visualização gráfica do espaço de busca delimitado pelas funções, e que tal artefato não pôde ser gerado pelo software, foram inclusos os gráficos gerados por \citeonline{cec2014}.
-Dessa forma, optou-se por avaliar as funções em 10 e 20 dimensões, que são os valores mais próximos daqueles inicialmente planejados.
+\begin{gather}
+    \begin{align}
+      \begin{split}
+        y = \left( 2 \sqrt{2} \cdot x_1 + x_2 \right) \cdot 100
+      \end{split}
+    \end{align}
+\end{gather}
 
-As duas funções objetivo escolhidas para a realização dos experimentos foram \gls{f1}, que é convexa e cuja representação gráfica é apresentada na \autoref{fig:f1}, e \gls{f5}, que é não convexa e cuja representação gráfica é apresentada na \autoref{fig:f5}.
+\todo{colocar as unidades}
 
-\begin{figure}[!ht]%
-    \centering
-    \includegraphics[scale=0.5]{img/f1.png}
-    \caption{Mapa 3D para a função \glsentryfull{f1} em duas dimensões. Fonte: \citeonline{cec2014}.}%
-    \label{fig:f1}
-\end{figure}
+\subsection{Restrições}
 
-\begin{figure}[!ht]%
-    \centering
-    \includegraphics[scale=0.5]{img/f5.png}
-    \caption{Mapa 3D para a função \glsentryfull{f5} em duas dimensões. Fonte: \citeonline{cec2014}.}%
-    \label{fig:f5}
-\end{figure}
+O problema está sujeito a restrições de tensão, deflexão e flambagem
+\todo{referencia}
+, com um valor máximo permitido de 2 em todos os casos. Se \(g_x > 0\), ocorre uma violação da restrição, o que significa que a solução proposta não é viável estruturalmente.
+As restrições são expressas pelas seguintes equações:
 
-\subsection{Configuração dos experimentos}
+\begin{gather}
+      \begin{subequations}
+        \begin{align}
+          \begin{split}
+            g_1 = \frac{2 \left( \sqrt{2} \cdot x_1 + x_2 \right)}{\sqrt{2} \cdot x_1^2 + 2 \cdot x_1 \cdot x_2} - 2
+          \end{split}
+          \\
+          \begin{split}
+            g_2 = \frac{2 \cdot x_2}{\sqrt{2} \cdot x_1^2 + 2 \cdot x_1 \cdot x_2} - 2
+          \end{split}
+          \\
+          \begin{split}
+            g_3 = \frac{2}{x_1 + \sqrt{2} \cdot x_2} - 2
+          \end{split}
+        \end{align}
+      \end{subequations}
+\end{gather}
 
-São apresentadas as constantes bem como os parâmetros escolhidos para a realização dos experimentos.
+\subsection{Penalização}
+
+Caso alguma das restrições \(g_1\), \(g_2\) ou \(g_3\) seja positiva, a restrição será violada, indicando que a solução é estruturalmente inviável. Para esses casos, são estabelecidos dois valores de penalização: \(\phi\) e \(\text{viol}\), que são adicionados à função objetivo. Esses valores positivos prejudicam a qualidade da solução, dado que se trata de uma função de minimização. 
+
+O valor \(\phi\) é a soma dos valores que violam as restrições, enquanto \(\text{viol}\) representa o número de restrições violadas.
+
+\begin{gather}
+    \begin{align}
+        \begin{split}
+            \phi = \sum \max(g_i, 0)
+        \end{split}
+    \end{align}
+\end{gather}
+
+Onde \(g_i\) são as restrições \(g_1\), \(g_2\) e \(g_3\).
+
+\todo{Adicionar subseção de segundo nível para a função objetivo penalizada}
+
+A função objetivo penalizada é dada por:
+
+\begin{gather}
+    \begin{align}
+        \begin{split}
+            f(x) = y + w_1 \cdot \phi + w_2 \cdot \text{viol}
+        \end{split}
+    \end{align}
+\end{gather}
+
+Onde \(w_1\) e \(w_2\) são os pesos associados à cada forma de penalização e \(\text{viol}\) é o número de restrições violadas.
+
+\subsection{Configuração dos Experimentos}
+
+A seguir, apresentamos as constantes e parâmetros selecionados para a realização dos experimentos.
 
 \subsubsection{Constantes}
 
-Dado o escopo do trabalho, foram estabelecidas algumas constantes utilizadas em todos os experimentos realizados, as quais estão listadas na \autoref{tab:constantes}.
+As constantes utilizadas nos experimentos são listadas na \autoref{tab:constantes}.
 
 \begin{table}[htb]
     \center%
     \begin{tabular}{l l}
         \bottomrule
-        \textbf{Constant}    & \textbf{Value} \\ \midrule
+        \textbf{Constante}    & \textbf{Valor} \\ \midrule
         Target               & Min            \\ \midrule
-        Population size      & 50             \\ \midrule
-        Crossover rate       & 90\%           \\ \midrule
-        Mutation             & Flip           \\ \midrule
-        Mutation rate        & 5\%            \\ \midrule
-        Elitism rate (best)  & 10\%           \\ \midrule
-        Elitism rate (worst) & 30\%           \\ \midrule
-        Epochs               & 10000          \\ \toprule
+        Tamanho da população & 50             \\ \midrule
+        Taxa de crossover    & 90\%           \\ \midrule
+        Mutação              & Flip           \\ \midrule
+        Taxa de mutação      & 5\%            \\ \midrule
+        Elitismo (melhores)  & 10\%           \\ \midrule
+        Elitismo (piores)    & 30\%           \\ \midrule
+        Gerações             & 1500           \\ \toprule
     \end{tabular}
     \caption{Constantes utilizadas nos experimentos.}%
     \label{tab:constantes}
 \end{table}
 
-Todas as funções tem objetivo de minimização.
-Cada gene dos indivíduos da população é representado por um número real entre -100 e 100.
-A população inicial é gerada de forma aleatória dentro deste intervalo.
-Seu tamanho se mantém fixo ao longo de todas as gerações, em 50 indivíduos.
+O algoritmo memético, por ser uma extensão do algoritmo genético, utiliza os mesmos parâmetros da \autoref{tab:constantes}, variando apenas o tipo de crossover e o número de gerações. Os parâmetros específicos do algoritmo memético estão listados na \autoref{tab:memetico}.
 
-O operador de \gls{crossover} é aplicado com uma taxa de 90\%, de forma que o método escolhido é parte das variáveis analisadas.
-A mutação é aplicada com uma taxa de 5\%, e o método de mutação escolhido é o \texttt{flip}.
-
-O elitismo é aplicado em 10\% dos melhores indivíduos e em 30\% dos piores.
-A execução de cada iteração é realizada por 10000 gerações, ou épocas.
-
-\subsection{Variáveis}
-
-As variáveis analisadas nos experimentos se tratam dos operadores de seleção, que podem ser roleta ou torneio --- em que se varia a proporção da população selecionada para participar do torneio (10\%, 20\%, 30\%, 40\%, 50\%) ---, e do operador de \gls{crossover}, que pode ser de um ponto ou aritmético.
-
-A compilação das variáveis resulta em 12 combinações possíveis, que são listadas na \autoref{tab:variaveis}, além das execuções com 10 e 20 dimensões, o que totaliza 24 experimentos para cada função objetivo.
-
-\begin{table}[!ht]
+\begin{table}[htb]
     \center%
-    \begin{tabular}{|l|l|l|}
+    \begin{tabular}{l l}
         \bottomrule
-        \multirow{2}{*}{Dimensions number} & \multicolumn{2}{l|}{10}                                 \\ \cline{2-3}
-                                           & \multicolumn{2}{l|}{20}                                 \\ \hline
-        \multirow{6}{*}{Selection}         & \multicolumn{2}{l|}{Roulette}                           \\ \cline{2-3}
-                                           & \multicolumn{1}{l|}{\multirow{5}{*}{Tournament}} & 10\% \\ \cline{3-3}
-                                           & \multicolumn{1}{l|}{}                            & 20\% \\ \cline{3-3}
-                                           & \multicolumn{1}{l|}{}                            & 30\% \\ \cline{3-3}
-                                           & \multicolumn{1}{l|}{}                            & 40\% \\ \cline{3-3}
-                                           & \multicolumn{1}{l|}{}                            & 50\% \\ \hline
-        \multirow{2}{*}{Crossover}         & \multicolumn{2}{l|}{One point}                          \\ \cline{2-3}
-                                           & \multicolumn{2}{l|}{Arithmetic}                         \\ \toprule
+        \textbf{Constante}    & \textbf{Valor} \\ \midrule
+        Taxa de exploração local & 0.5          \\ \midrule
+        Máx. gerações locais   & 10            \\ \midrule
+        Bits por parâmetro     & 4             \\ \midrule
+        Tipo de crossover      & Um ponto      \\ \midrule
+        Gerações               & 100           \\ \toprule
     \end{tabular}
-    \caption{Variáveis analisadas nos experimentos.}%
-    \label{tab:variaveis}
+    \caption{Parâmetros adicionais do algoritmo memético.}%
+    \label{tab:memetico}
 \end{table}
 
-Os experimentos foram realizados com 10 execuções para cada combinação de variáveis, a fim de garantir a robustez dos resultados obtidos.
-Dessa forma, totaliza 240 execuções para cada função objetivo.
+As variáveis de decisão, \(x_1\) e \(x_2\), que representam as áreas das seções transversais das barras, foram normalizadas para o intervalo de 0 a 1, garantindo consistência na avaliação dos resultados. A população inicial é gerada aleatoriamente dentro desse intervalo, e seu tamanho permanece fixo em 50 indivíduos ao longo de todas as gerações.
+
+O operador de \gls{crossover} é aplicado com uma taxa de 90\%. A mutação, com uma taxa de 5\%, é realizada utilizando o método \texttt{flip}. O elitismo é aplicado a 10\% dos melhores indivíduos e a 30\% dos piores. No algoritmo genético, a execução ocorre por 1500 gerações, enquanto no algoritmo memético, por 100 gerações.
+
+\subsection{Parâmetros e Variáveis}
+
+Os experimentos foram conduzidos utilizando os parâmetros que apresentaram os melhores resultados nas etapas anteriores deste trabalho. Assim, a única parametrização dinâmica do experimento foram os pesos atribuídos a cada tipo de penalização.
+
+Para garantir a robustez dos resultados, os experimentos foram repetidos 10 vezes para cada algoritmo.
