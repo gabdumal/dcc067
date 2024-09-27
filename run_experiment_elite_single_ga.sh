@@ -4,13 +4,18 @@ echo "DCC067 Computação Evolucionista"
 echo "Experimento com o algoritmo genético EliteSingleGA"
 echo
 
-readonly possible_dimensions=(10)
+readonly possible_dimensions=(2)
 
-# Convex
-readonly objective_functions=("F62005")
+readonly objective_functions=("ThreeBarTruss")
 readonly selections=("tournament")
 readonly tournament_percentages=(0.2)
 readonly crossovers=("arithmetic")
+
+# Convex
+# readonly objective_functions=("F62005")
+# readonly selections=("tournament")
+# readonly tournament_percentages=(0.2)
+# readonly crossovers=("arithmetic")
 
 # # Non-convex
 # readonly objective_functions=("F92005")

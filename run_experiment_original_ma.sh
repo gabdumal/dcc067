@@ -4,7 +4,12 @@ echo "DCC067 Computação Evolucionista"
 echo "Experimento com o algoritmo genético OriginalMA"
 echo
 
-readonly possible_dimensions=(10)
+readonly possible_dimensions=(2)
+
+readonly objective_functions=("ThreeBarTruss")
+readonly selections=("tournament")
+readonly tournament_percentages=(0.2)
+readonly crossovers=("one_point")
 
 # # Convex
 # readonly objective_functions=("F62005")
@@ -13,10 +18,10 @@ readonly possible_dimensions=(10)
 # readonly crossovers=("arithmetic")
 
 # Non-convex
-readonly objective_functions=("F92005")
-readonly selections=("tournament")
-readonly tournament_percentages=(0.5)
-readonly crossovers=("one_point")
+# readonly objective_functions=("F92005")
+# readonly selections=("tournament")
+# readonly tournament_percentages=(0.5)
+# readonly crossovers=("one_point")
 
 readonly now=$(date)
 readonly experiment_identifier="experiment_$(date +'%Y%m%d%H%M%S')"
