@@ -5,38 +5,39 @@ Para a condução deste trabalho, foi realizada uma pesquisa bibliográfica sobr
 
 \subsection{Função Objetivo}
 
-Com esse aprofundamento, compreendemos que o problema envolve a minimização da área da seção transversal das três barras que compõem uma treliça. Para evitar que o problema se torne multiobjetivo, a avaliação é feita considerando um peso fixo hipotético posicionado sobre a treliça, de forma que o único objetivo é minimizar o peso total da estrutura, mantendo sua capacidade de suportar tal peso.
+Com base em \citeonline{fauzi_truss}, compreendemos que o problema envolve a minimização da área da seção transversal das três barras que compõem uma treliça. Para evitar que o problema se torne multiobjetivo, a avaliação é feita considerando um peso fixo hipotético posicionado sobre a treliça, de forma que o único objetivo é minimizar o peso total da estrutura, mantendo sua capacidade de suportar tal peso.
 
 Assim, seções transversais menores resultam em um peso menor e, consequentemente, em uma solução de melhor qualidade. Embora à primeira vista o problema pareça requerer três variáveis (uma para cada barra da treliça), a simetria estrutural exige que as barras diagonais tenham seções iguais, evitando tendências de giro que poderiam comprometer a integridade da estrutura.
+Tal propriedade pode ser visualizada na \autoref{fig:f1}, em que a barra 2 é horizontal e as barras 1 e 3 são diagonais.
 
-Dessa forma, as barras 1 e 3 devem ter a mesma área de seção transversal, reduzindo o problema para duas variáveis: \(x_1\) e \(x_2\), onde \(x_1\) representa as seções das barras diagonais e \(x_2\) a seção da barra horizontal.
+Dessa forma, as barras 1 e 3 devem ter a mesma área de seção transversal, reduzindo o problema para duas variáveis, quais sejam:
+\begin{symbols}
+    \item[\(x_1\) Área da seção transversal das barras 1 e 3]
+    \item[\(x_2\) Área da seção transversal da barra 2]
+\end{symbols}
 
-\todo{Inserir figura ilustrativa do problema}
-
-% \begin{figure}[!ht]%
-%     \centering
-%     \includegraphics[scale=0.5]{img/f1.png}
-%     \caption{Representação tridimensional da função \glsentryfull{f1} em duas dimensões. Fonte: \citeonline{cec2014}.}%
-%     \label{fig:f1}
-% \end{figure}
+\begin{figure}[!ht]%
+    \centering
+    \includegraphics[scale=1]{images/Three-Bar-Truss-Design.png}
+    \caption{Representação do \gls{problem}. Fonte: \citeonline{fauzi_truss}.}%
+    \label{fig:f1}
+\end{figure}
 
 A função objetivo pode ser expressa como:
 
-\begin{gather}
-    \begin{align}
-        \begin{split}
-            y = \left( 2 \sqrt{2} \cdot x_1 + x_2 \right) \cdot 100
-        \end{split}
-    \end{align}
-\end{gather}
-
-\todo{colocar as unidades}
+\begin{equation}
+    \begin{split}
+        y = \left( 2 \sqrt{2} \cdot x_1 + x_2 \right) \cdot l \\
+        \text{onde~}
+        0 \leq x_1, x_2 \leq 1 \text{~e~}
+        l = 100 \text{~cm}.
+    \end{split}
+\end{equation}
 
 \subsection{Restrições}
 
-O problema está sujeito a restrições de tensão, deflexão e flambagem
-\todo{referencia}
-, com um valor máximo permitido de 2 em todos os casos. Se \(g_x > 0\), ocorre uma violação da restrição, o que significa que a solução proposta não é viável estruturalmente.
+O problema está sujeito a restrições de tensão, deflexão e flambagem~\cite{fauzi_truss}, com um valor máximo permitido de 2 em todos os casos.
+Se \(g_x > 0\), ocorre uma violação da restrição, o que significa que a solução proposta não é viável estruturalmente.
 As restrições são expressas pelas seguintes equações:
 
 \begin{gather}
@@ -56,27 +57,36 @@ As restrições são expressas pelas seguintes equações:
         \end{align}
     \end{subequations}
 \end{gather}
+\begin{equation*}
+    \begin{aligned}
+        \text{onde~}
+        0 \leq x_1, x_2 \leq 1, \\
+        P = 2 \text{~KN/cm}^2,  \\
+        \sigma = 2 \text{~KN/cm}^2.
+    \end{aligned}
+\end{equation*}
 
 \subsection{Penalização}
 
-Caso alguma das restrições \(g_1\), \(g_2\) ou \(g_3\) seja positiva, a restrição será violada, indicando que a solução é estruturalmente inviável. Para esses casos, são estabelecidos dois valores de penalização: \(\phi\) e \(\text{viol}\), que são adicionados à função objetivo. Esses valores positivos prejudicam a qualidade da solução, dado que se trata de uma função de minimização.
+Caso alguma das restrições \(g_1\), \(g_2\) ou \(g_3\) seja positiva, a restrição será violada, indicando que a solução é estruturalmente inviável.
+Para esses casos, são estabelecidos dois valores de penalização:\(\phi \) e \(\text{viol}\), que são adicionados à função objetivo.
+Esses valores positivos prejudicam a qualidade da solução, dado que se trata de uma função de minimização.
 
-O valor \(\phi\) é a soma dos valores que violam as restrições, enquanto \(\text{viol}\) representa o número de restrições violadas.
+O valor \(\phi \) é a soma dos valores que violam as restrições, enquanto \(\text{viol}\) representa o número de restrições violadas.
 
 \begin{gather}
     \begin{align}
         \begin{split}
-            \phi = \sum \max(g_i, 0)
+            \phi = \sum \max(g_i, 0) \\
+            \text{onde~} i = 1, 2, 3
         \end{split}
     \end{align}
 \end{gather}
 
-Onde \(g_i\) são as restrições \(g_1\), \(g_2\) e \(g_3\).
 
 \subsubsection{Função Objetivo Penalizada}
 
 A função objetivo penalizada é dada por:
-
 \begin{gather}
     \begin{align}
         \begin{split}
@@ -85,7 +95,15 @@ A função objetivo penalizada é dada por:
     \end{align}
 \end{gather}
 
-Onde \(w_1\) e \(w_2\) são os pesos associados à cada forma de penalização e \(\text{viol}\) é o número de restrições violadas.
+Cujos componentes são:
+
+\begin{symbols}
+    \item[\(f(x)\)] Função objetivo penalizada
+    \item[\(y\)] Função objetivo
+    \item[\(w_i\)] Peso associado à penalização por violação
+    \item[\(\phi s\)] Valor de penalização
+    \item[\(\text{viol}\)] Número de restrições violadas
+\end{symbols}
 
 \subsection{Configuração dos Experimentos}
 
