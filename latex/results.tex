@@ -2,7 +2,6 @@
 \label{sec:resultados}
 
 Nesta seção, são apresentados os resultados obtidos a partir da execução dos experimentos descritos na \autoref{sec:metodologia}.
-% Os valores obtidos pelo experimento são apresentados em planilhas eletrônicas, disponíveis para os problemas em 10 dimensões\footnote{Resultados do experimento para problema de 10 dimensões. Disponível em: \url{https://docs.google.com/spreadsheets/d/1bOAUmGv3ZejnVMTojSYcHIgnF4cwjmHWzkgA4WuXQwg/edit?usp=sharing}} e em 20 dimensões\footnote{Resultados do experimento para problema de 20 dimensões. Disponível em: \url{https://docs.google.com/spreadsheets/d/1HRjwZU50QHC8F-N6ofHfJgo7oWcU0-PTe3e8cokZ4Gc/edit?usp=sharing}}.
 
 \subsection{Análise dos Resultados}%
 
@@ -35,89 +34,86 @@ estão disponíveis on-line.
 \input{tables/memetic_results.tex}
 
 Em todas as execuções com pesos iguais ou superiores a 100, o algoritmo genético simples convergiu para soluções muito próximas do ótimo.
-Mesmo com penalizações elevadas, como 800, a convergência se manteve consistente.
+O experimento com peso de 100 apresentou uma convergência total antes de 200 gerações, como mostrado na \autoref{fig:ga-weight-100}.
+Com pesos de 400, a convergência foi um pouco mais lenta, ocorrendo pouco após 600 gerações, como mostrado na \autoref{fig:ga-weight-400}.
+
+Mesmo com penalizações elevadas, como 800, a convergência se manteve consistente, tendo encontrado uma solução próxima do ótimo global pouco antes da geração 800, como mostrado na \autoref{fig:ga-weight-800}.
 Entretanto, com esses pesos mais altos, o algoritmo exigiu um número maior de iterações para alcançar a solução final, embora a qualidade dessa tenha permanecido satisfatória.
 
-\todo{colocar o conteúdo da pasta iteracoesXpeso}
+\begin{figure}
+    \centering
+    \includegraphics[width=.6\linewidth]{images/weight/100.png}
+    \caption{Convergência do algoritmo genético com peso de penalização de 100.}%
+    \label{fig:ga-weight-100}
+\end{figure}
 
-O algoritmo memético apresentou um desempenho semelhante, atingindo soluções próximas do ótimo em todas as execuções com pesos superiores a 100. Além disso, sua convergência foi extremamente rápida, sendo que em algumas execuções uma única iteração foi suficiente para encontrar uma solução próxima do ótimo, com um valor aproximadamente uma unidade acima do ideal. Embora o gráfico do mínimo global pudesse sugerir uma estagnação, através do o gráfico do mínimo local é possível ver o funcionamento do algoritmo na busca por soluções melhores.
-\todo{colocar o conteúdo da pasta convergenciaMA}
+\begin{figure}
+    \centering
+    \includegraphics[width=.6\linewidth]{images/weight/400.png}
+    \caption{Convergência do algoritmo genético com peso de penalização de 400.}%
+    \label{fig:ga-weight-400}
+\end{figure}
 
-Por outro lado, ao utilizar pesos de penalização mais baixos (50 ou inferiores), ambos os algoritmos começaram a gerar soluções inviáveis. À medida que o peso diminuía, as soluções aparentavam melhorar em termos de qualidade, mas violavam cada vez mais as restrições, resultando em soluções estruturalmente inviáveis.
+\begin{figure}
+    \centering
+    \includegraphics[width=.6\linewidth]{images/weight/800.png}
+    \caption{Convergência do algoritmo genético com peso de penalização de 800.}%
+    \label{fig:ga-weight-800}
+\end{figure}
 
-\todo{colocar as imagens da pasta solucoesInviaveis}
+O algoritmo memético apresentou um desempenho semelhante, atingindo soluções próximas do ótimo em todas as execuções com pesos superiores a 100.
+Além disso, sua convergência foi extremamente rápida, sendo que em algumas execuções uma única iteração foi suficiente para encontrar uma solução próxima do ótimo, com um valor aproximadamente uma unidade acima do ideal.
 
+O gráfico do mínimo global poderia parecer sugerir uma estagnação, como mostrado na \autoref{fig:memetic-global}.
+Entretanto, através do o gráfico do mínimo local mostrado em \autoref{fig:memetic-local}, é possível constatar que o algoritmo continuou a explorar o espaço de busca com expressiva variabilidade, até o limite de gerações estabelecido.
 
-% \begin{table}[!ht]
-%     \resizebox{\textwidth}{!}{%
-%         \begin{tabular}{llllrrrr}
-%             \bottomrule
-%             \textbf{Obj.\ func.}                       &
-%             \textbf{Crossover}                         &
-%             \textbf{Selection}                         &
-%             \textbf{\( \boldsymbol{K} \)}              &
-%             \textbf{Best fitness}                      &
-%             \textbf{Average fitness}                   &
-%             \textbf{Fitness \( \boldsymbol{\sigma} \)} &
-%             \textbf{Discrepancy}                                                                                                                           \\ \midrule
-%             F12014                                     & one\_point & roulette   & None & 31,333,596.32  & 51,840,884.76  & 13,297,083.01 & 51,840,784.76  \\
-%             F12014                                     & one\_point & tournament & 0.1  & 6,459,590.39   & 8,170,932.28   & 1,340,563.86  & 8,170,832.28   \\
-%             F12014                                     & one\_point & tournament & 0.2  & 501,184.77     & 1,011,075.90   & 513,203.52    & 1,010,975.90   \\
-%             F12014                                     & one\_point & tournament & 0.3  & 216,342.15     & 703,931.58     & 525,414.34    & 703,831.58     \\
-%             F12014                                     & one\_point & tournament & 0.4  & 213,078.25     & 699,594.39     & 317,577.00    & 699,494.39     \\
-%             F12014                                     & one\_point & tournament & 0.5  & 257,286.41     & 850,689.20     & 462,953.51    & 850,589.20     \\
-%             F12014                                     & arithmetic & roulette   & None & 149,508,377.65 & 194,305,830.34 & 31,394,179.76 & 194,305,730.34 \\
-%             F12014                                     & arithmetic & tournament & 0.1  & 4,554,550.01   & 6,522,961.69   & 1,494,523.52  & 6,522,861.69   \\
-%             F12014                                     & arithmetic & tournament & 0.2  & 418,897.70     & 658,253.99     & 124,383.49    & 658,153.99     \\
-%             F12014                                     & arithmetic & tournament & 0.3  & 202,876.41     & 402,340.97     & 176,709.61    & 402,240.97     \\
-%             F12014                                     & arithmetic & tournament & 0.4  & 143,574.03     & 506,514.55     & 323,014.25    & 506,414.55     \\
-%             F12014                                     & arithmetic & tournament & 0.5  & 124,955.96     & 409,121.44     & 215,047.98    & 409,021.44     \\
-%             F52014                                     & one\_point & roulette   & None & 520.19         & 520.24         & 0.03          & 20.24          \\
-%             F52014                                     & one\_point & tournament & 0.1  & 520.16         & 520.18         & 0.02          & 20.18          \\
-%             F52014                                     & one\_point & tournament & 0.2  & 520.04         & 520.07         & 0.02          & 20.07          \\
-%             F52014                                     & one\_point & tournament & 0.3  & 520.06         & 520.06         & 0.01          & 20.06          \\
-%             F52014                                     & one\_point & tournament & 0.4  & 520.04         & 520.05         & 0.01          & 20.05          \\
-%             F52014                                     & one\_point & tournament & 0.5  & 520.04         & 520.05         & 0.01          & 20.05          \\
-%             F52014                                     & arithmetic & roulette   & None & 520.60         & 520.70         & 0.07          & 20.70          \\
-%             F52014                                     & arithmetic & tournament & 0.1  & 520.53         & 520.70         & 0.07          & 20.70          \\
-%             F52014                                     & arithmetic & tournament & 0.2  & 509.85         & 518.68         & 4.02          & 18.68          \\
-%             F52014                                     & arithmetic & tournament & 0.3  & 509.64         & 517.27         & 5.14          & 17.27          \\
-%             F52014                                     & arithmetic & tournament & 0.4  & 520.30         & 520.38         & 0.03          & 20.38          \\
-%             F52014                                     & arithmetic & tournament & 0.5  & 520.26         & 520.31         & 0.03          & 20.31          \\
-%             \toprule
-%         \end{tabular}%
-%     }
-%     \caption{Resultados obtidos para os problemas \glsentryname{f1} e \glsentryname{f5} em 20 dimensões.
-%     }%
-%     \label{tab:fitness_20}
-% \end{table}
+\begin{figure}
+    \centering
+    \includegraphics[width=.6\linewidth]{images/convergence/gdbf.png}
+    \caption{Convergência do ótimo global para o algoritmo memético.}%
+    \label{fig:memetic-global}
+\end{figure}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=.6\linewidth]{images/convergence/lbfc.png}
+    \caption{Convergência do ótimo local para o algoritmo memético.}%
+    \label{fig:memetic-local}
+\end{figure}
 
+Por outro lado, ao utilizar pesos de penalização mais baixos (50 ou inferiores), ambos os algoritmos começaram a gerar soluções inviáveis, como mostrado nas figuras~\ref{fig:non-viable-ga}, para o algoritmo genético, e~\ref{fig:non-viable-ma}, para o memético.
 
-% Nos casos em que o operador de seleção por torneio foi utilizado para a função \gls{f1}, o valor de \( K \) foi modificado entre 0,1 e 0,5 aumentando sempre em 0,1.
-% Neste caso foi possível observar uma ligeira piora da solução em ambos os extremos.
-% O valor que encontrou os melhores resultados foi 0,2 (padrão da biblioteca).
-% Foi bastante notório que este valor levava o algoritmo a convergir mais tarde, com cerca de 4000 gerações.
-% Os valores associados ao elitismo não foram alterados, mantendo-se os padrões da biblioteca, com 0,1 para o elitismo de melhores indivíduos e 0,3 para o de piores.
+À medida que o peso diminuía, as soluções aparentavam melhorar em termos de qualidade, mas violavam cada vez mais as restrições, resultando em soluções que estruturalmente são impossíveis.
+Comparativamente, o algoritmo memético se comportou de forma mais agressiva, gerando soluções inviáveis mais rapidamente que o algoritmo genético simples.
 
-% Acerca das funções de benchmark, a \gls{f1} apresentou resultados menos satisfatórios, com discrepâncias de até 15.026.094,68 e 194.305.730,34 em 10 e 20 dimensões, respectivamente.
-% Estes valores são bastante elevados, considerando que a função \gls{f1} é convexa e possui um mínimo global conhecido de 100.
+\begin{figure}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{images/non_viable/0/GA.png}
+        \caption{Peso 0.}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{images/non_viable/25/GA.png}
+        \caption{Peso 25.}
+    \end{subfigure}%
+    \caption{Soluções inviáveis geradas pelo algoritmo genético.}%
+    \label{fig:non-viable-ga}
+\end{figure}
 
-% Por outro lado, a função \gls{f5} apresentou resultados mais satisfatórios, com discrepâncias de até 20,23 e 20,70 em 10 e 20 dimensões, respectivamente, levando em consideração que a função \gls{f5} é não convexa e possui um mínimo global conhecido de 500.
-% Estes valores são mais próximos do esperado, indicando que o \gls{ga} apresenta características que o tornam mais eficiente para este tipo de função.
-
-% A seleção por roleta esteve entre os piores resultados. Seus valores de \gls{fitness} médio figuravam como 15.026.194,68 e 194.305.830,34, para 10 e 20 dimensões.
-% A seleção por torneio, por outro lado, apresentou resultados mais satisfatórios.
-% Considerando os valores de \gls{fitness} médios, a seleção por torneio com \( K \) em 0.3 foi a que obteve os melhores resultados para a função \gls{f1} em 20 dimensões, com 402,340.97.
-% Já para o experimento com 10 dimensões, houve uma melhora contínua conforme se aumentava o \( K \), até 0.5, com 143.231,77.
-% É possível propor a hipótese de que uma menor pressão seletiva, como a proporcionada por \( K \) em valores maiores, pode levar a uma maior diversidade genética, o que pode ser benéfico para a convergência do algoritmo.
-
-% Apesar de o operador de \gls{crossover} por aritmética ter apresentado o pior resultado para a função \gls{f1}, com 15.026.194,68 para 10 dimensões, deve-se observar que, neste caso, ele estava associado à seleção por roleta.
-% Quando o observa junto à seleção por torneio com \( K \) em 0.5, o valor de adequação médio obtido foi de 143.231,77, o melhor para essa função nesse número de dimensões.
-
-% A função \gls{f5}, por apresentar menos diferença entre os valores de adequação das soluções das variantes, tornou mais difícil a identificação de padrões.
-% Ainda assim, pôde-se perceber que em 10 dimensões, com o torneio exibindo \( K \) em 0.4 e 0.3 associado ao operador de \gls{crossover} um ponto teve vantagem em relação aos outros valores de \( k \) e roleta.
-% De todo modo, o operador de \gls{crossover} aritmético obtém vantagem significativa com qualquer valor de \( K \) maior que 0.1.
-
-% Quanto à análise com 20 dimensões, a diferença entre as variantes foi ainda menos acentuada.
-% Apenas se constatou que o operador de \gls{crossover} aritmético gerou resultados ligeiramente superiores quando o torneio foi utilizado com \( K \) em 0.2 e 0.3.
+\begin{figure}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{images/non_viable/0/MA.png}
+        \caption{Peso 0.}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{images/non_viable/25/MA.png}
+        \caption{Peso 25.}
+    \end{subfigure}%
+    \caption{Soluções inviáveis geradas pelo algoritmo memético.}%
+    \label{fig:non-viable-ma}
+\end{figure}
